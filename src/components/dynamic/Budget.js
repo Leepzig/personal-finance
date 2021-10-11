@@ -1,27 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import Transaction from './Transaction'
 import { useSelector, useDispatch } from 'react-redux'
-import { setBudget } from '../../actions/budgetAction'
+import { addExpense, addIncome, setBudget } from '../../actions/budgetAction'
 
 const Budget = () => {
-    // const [expenses, setExpenses] = useState([])
     const dispatch = useDispatch()
     const budget = useSelector(state => state)
 
-    const addNewTransactionLine = () => {
+    const addNewExpenseLine = () => {
         const blankTransaction = {name:"", budgeted:"", actual:""}
-        //setExpenses([...expenses, <Transaction transaction={blankTransaction}/>])
-
+        dispatch(addExpense([...budget.expenses, blankTransaction]))
     }
+    const addNewIncomeLine = () => {
+        const blankTransaction = {name:"", budgeted:"", actual:""}
+        dispatch(addIncome([...budget.income, blankTransaction]))
+    }
+
     useEffect(() => {
         dispatch(setBudget())
 
-        //no redux
-        // setExpenses([
-        //     {name:"food", budgeted:"400", actual:""},
-        //     {name:"rent", budgeted:"900", actual:"900"},
-        //     {name:"electricity", budgeted:"200", actual:"190"},
-        // ])
     },[dispatch])
     return (
         <div>
@@ -36,7 +33,7 @@ const Budget = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {budget.income.map(expense => <Transaction id={expense.name } transaction={expense}/>)}
+                    {budget.income.map(incomeTransaction => <Transaction id={incomeTransaction.name } transaction={incomeTransaction}/>)}
                 </tbody>
                 <tfoot>
                     <tr>
@@ -57,9 +54,8 @@ const Budget = () => {
                 </thead>
                 <tbody>
                     {budget.expenses.map(expense => <Transaction id={expense.name } transaction={expense}/>)}
-                <tr>
-                    <button onClick={addNewTransactionLine}>+ New Expense</button>
-                </tr>
+
+
                 </tbody>
                 <tfoot>
                     <tr>
@@ -69,6 +65,8 @@ const Budget = () => {
                     </tr>
                 </tfoot>
             </table>
+                    <button onClick={addNewIncomeLine}>+ New Income</button>
+                    <button onClick={addNewExpenseLine}>+ New Expense</button>
         </div>
     )
 }

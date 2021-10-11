@@ -40,16 +40,17 @@ export const setBudget = () => {
     }
 }
 
-export const addExpense = () => {
+export const addExpense = (details) => {
     return async dispatch => {
-
-        dispatch({type:"ADD_EXPENSE", payload: ""})
+        //details are all
+        const payload = details
+        dispatch({type:"ADD_EXPENSE", payload})
     }
 }
 
-export const addIncome = () => {
+export const addIncome = (details) => {
     return async dispatch => {
-
-        dispatch({type:"ADD_INCOME", payload: ""})
+        const payload = details
+        dispatch({type:"ADD_INCOME", payload})
     }
 }

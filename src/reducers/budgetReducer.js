@@ -9,9 +9,9 @@ export const budgetReducer = (state=initialState, action) => {
         case "SET_BUDGET":
             return {...state, income:action.payload.income, expenses: action.payload.expenses, header: action.payload.header}
         case "ADD_EXPENSE":
-            return [...state, action.payload]
+            return {...state, expenses:action.payload}
         case "ADD_INCOME":
-            return [...state, action.payload]
+            return {...state, income:action.payload}
         default:
             return state
     }
