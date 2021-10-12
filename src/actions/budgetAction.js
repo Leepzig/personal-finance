@@ -30,7 +30,9 @@ const budgetInfo = {
         budgeted: 0,
         actual: 200
     }], 
-    header:"October 2021"
+    header:"October 2021",
+    incomeTotal:{name:"Total", budgeted:2300, actual:2500},
+    expenseTotal:{name:"Total", budgeted: 2500, actual: 2400}
 }
 
 

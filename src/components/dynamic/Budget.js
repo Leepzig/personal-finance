@@ -37,9 +37,9 @@ const Budget = () => {
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td>Total</td>
-                        <td>600</td>
-                        <td>570</td>
+                        <td>{budget.incomeTotal.name}</td>
+                        <td>{budget.incomeTotal.budgeted}</td>
+                        <td>{budget.incomeTotal.actual}</td>
                     </tr>
                 </tfoot>
             </table>
@@ -59,9 +59,9 @@ const Budget = () => {
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td>Total</td>
-                        <td>600</td>
-                        <td>570</td>
+                        <td>{budget.expenseTotal.name}</td>
+                        <td>{budget.expenseTotal.budgeted}</td>
+                        <td>{budget.expenseTotal.actual}</td>
                     </tr>
                 </tfoot>
             </table>
