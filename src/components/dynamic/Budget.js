@@ -44,7 +44,7 @@ const Budget = () => {
         <div>
             <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid item xs={8}>
+        <Grid item xs={10}>
           <Item>
 
         <TableContainer component={Paper}>
