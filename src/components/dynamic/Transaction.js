@@ -8,13 +8,13 @@ const Transaction = ( {transaction} ) => {
         actual: transaction.actual
     })
 
-
+//MAke it so that on focus for the <tr> the delete button appears
     return (
         <tr>
             <td><input className="transaction-line" aria-label="Field name" type="text" name="name" value={form.name} onChange={handleFormChange}/></td>
             <td><input className="transaction-line" aria-label="Field name" type="text" name="budgeted" value={form.budgeted} onChange={handleFormChange}/></td>
             <td><input className="transaction-line" aria-label="Field name" type="text" name="actual" value={form.actual} onChange={handleFormChange}/></td>
-            {/* <td><input aria-label="Field name" type="button" placeholder="Delete Transaction"/></td> */}
+            <td><input aria-label="Field name" type="button" value="Delete" /></td>
         </tr>
     )
 }
