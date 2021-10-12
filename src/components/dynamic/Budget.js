@@ -13,6 +13,8 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 
 const Budget = () => {
@@ -41,56 +43,57 @@ const Budget = () => {
 
     },[dispatch])
     return (
-        <div>
-            <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={10}>
-          <Item>
-
-        <TableContainer component={Paper}>
-                <Typography variant="h4">Tab Header (October 2021)</Typography>
-                <Typography align="left" variant="h6">Income</Typography>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Title</TableCell>
-            <TableCell align="right">Expected Income</TableCell>
-            <TableCell align="right">Actual Income</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-        {budget.income.map(incomeTransaction => <Transaction id={incomeTransaction.name } transaction={incomeTransaction}/>)}
-        <TableRow >
-            <TableCell >{budget.incomeTotal.name}</TableCell>
-            <TableCell align="right">{budget.incomeTotal.budgeted}</TableCell>
-            <TableCell align="right">{budget.incomeTotal.actual}</TableCell>
-        </TableRow>
-        </TableBody>
-        <Typography align="left" variant="h6">Expenses</Typography>
-        <TableHead>
-          <TableRow>
-            <TableCell>Title</TableCell>
-            <TableCell align="right">Expected Income</TableCell>
-            <TableCell align="right">Actual Income</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-        {budget.expenses.map(expense => <Transaction id={expense.name } transaction={expense}/>)}
-        <TableRow >
-            {/* <TableCell>{budget.expensesTotal.name}</TableCell>
-            <TableCell>{budget.expensesTotal.budgeted}</TableCell>
-        <TableCell>{budget.expensesTotal.actual}</TableCell> */}
-        </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
-                <button onClick={addNewIncomeLine}>+ New Income</button>
-                <button onClick={addNewExpenseLine}>+ New Expense</button>
+      <Box sx={{
+            marginTop: 8,
+            marginLeft:10,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
+        <Item>
+          <TableContainer component={Paper}>
+            <Typography variant="h4">Tab Header (October 2021)</Typography>
+            <Typography align="left" variant="h6">Income</Typography>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Title</TableCell>
+                  <TableCell align="right">Expected Income</TableCell>
+                  <TableCell align="right">Actual Income</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+              {budget.income.map(incomeTransaction => <Transaction id={incomeTransaction.name } transaction={incomeTransaction}/>)}
+                <TableRow >
+                  <TableCell >{budget.incomeTotal.name}</TableCell>
+                  <TableCell align="right">{budget.incomeTotal.budgeted}</TableCell>
+                  <TableCell align="right">{budget.incomeTotal.actual}</TableCell>
+                </TableRow>
+              </TableBody>
+              <Typography align="left" variant="h6">Expenses</Typography>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Title</TableCell>
+                  <TableCell align="right">Expected Income</TableCell>
+                  <TableCell align="right">Actual Income</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {budget.expenses.map(expense => <Transaction id={expense.name } transaction={expense}/>)}
+                <TableRow >
+                  {/* <TableCell>{budget.expensesTotal.name}</TableCell>
+                  <TableCell>{budget.expensesTotal.budgeted}</TableCell>
+              <TableCell>{budget.expensesTotal.actual}</TableCell> */}
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Stack direction="row" spacing={2}>
+            <Button variant="contained" onClick={addNewIncomeLine}>+ New Income</Button>
+            <Button variant="contained" onClick={addNewExpenseLine}>+ New Expense</Button>
+          </ Stack >
         </Item>
-      </Grid>
-        </Grid>
       </Box>
-        </div>
     )
 }
 
