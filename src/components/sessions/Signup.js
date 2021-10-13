@@ -1,5 +1,13 @@
 import React from 'react'
 import { useForm } from '../../hooks/useForm'
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+
 
 const Signup = () => {
     const [form, handleFormChange] = useForm({
@@ -9,15 +17,89 @@ const Signup = () => {
         password_confirmation:""
     })
 
+    const handleSubmit = e => {
+        e.preventDefault()
+        console.log(form)
+    }
     return (
-        <div>
-            <form>
-                <input type="text" name="name" value={form.name} onChange={handleFormChange} placeholder="Name..."/><br/>
-                <input type="text" name="email" value={form.email} onChange={handleFormChange} placeholder="Email..."/><br/>
-                <input type="text" name="password" value={form.password} onChange={handleFormChange} placeholder="password..."/><br/>
-                <input type="text" name="password_confirmation" value={form.password_confirmation} onChange={handleFormChange} placeholder="password..."/>
-            </form>
-        </div>
+    <Container component="main" maxWidth="xs">
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              value={form.email}
+              onChange={handleFormChange}
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              value={form.name}
+              onChange={handleFormChange}
+              fullWidth
+              name="name"
+              label="Name"
+              type="text"
+              id="name"
+              autoComplete="current-password"
+            />
+            <TextField
+              margin="normal"
+              required
+              value={form.password}
+              onChange={handleFormChange}
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <TextField
+              margin="normal"
+              required
+              value={form.password_confirmation}
+              onChange={handleFormChange}
+              fullWidth
+              name="password_confirmation"
+              label="Password confirmation"
+              type="password"
+              id="password_confirmation"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign up
+            </Button>
+            <Grid container>
+              <Grid item>
+                <Link href="#" variant="body2">
+                  {"Already Have an Account? Sign In"}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
     )
 }
 

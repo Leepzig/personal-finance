@@ -6,7 +6,6 @@ import Signup from "./components/sessions/Signup";
 
 function App() {
   return (
-    <div>
       <Router>
         <Navbar />
         <Switch >
@@ -15,7 +14,6 @@ function App() {
           <Route exact path="/signup" component={ Signup }/>
         </Switch >
       </Router>
-    </div>
   );
 }
 
