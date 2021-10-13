@@ -12,7 +12,7 @@ import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+// import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
@@ -52,7 +52,7 @@ const Budget = () => {
           }}>
         <Item>
           <TableContainer component={Paper}>
-            <Typography variant="h4">Tab Header (October 2021)</Typography>
+            <Typography variant="h4">{budget.header}</Typography>
             <Typography align="left" variant="h6">Income</Typography>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
