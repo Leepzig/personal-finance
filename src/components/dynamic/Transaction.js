@@ -23,7 +23,6 @@ const Transaction = ( {transaction} ) => {
         <TableRow
             key={transaction.name}
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            onClick
             >
               <TableCell component="th" scope="row">
                 <Input value={form.name} name="name" onChange={handleFormChange}/>

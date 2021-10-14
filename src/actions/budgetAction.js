@@ -55,4 +55,11 @@ export const addIncome = (details) => {
         const payload = details
         dispatch({type:"ADD_INCOME", payload})
     }
+
+// export const newBudget = () => {
+//     return async dispatch => {
+//         const payload = ""
+//         dispatch({type:"NEW_BUDGET", payload})
+//         }
+//     }
 }

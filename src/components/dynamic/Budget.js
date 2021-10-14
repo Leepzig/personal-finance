@@ -51,7 +51,7 @@ const Budget = () => {
             alignItems: 'center',
           }}>
         <Item>
-          <TableContainer component={Paper}>
+          <TableContainer >
             <Typography variant="h4">{budget.header}</Typography>
             <Typography align="left" variant="h6">Income</Typography>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -63,14 +63,14 @@ const Budget = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-              {budget.income.map(incomeTransaction => <Transaction id={incomeTransaction.name } transaction={incomeTransaction}/>)}
+              {budget.income.map(incomeTransaction => <Transaction key={incomeTransaction.name } transaction={incomeTransaction}/>)}
                 <TableRow >
                   <TableCell >{budget.incomeTotal.name}</TableCell>
                   <TableCell align="right">{budget.incomeTotal.budgeted}</TableCell>
                   <TableCell align="right">{budget.incomeTotal.actual}</TableCell>
                 </TableRow>
               </TableBody>
-              <Typography align="left" variant="h6">Expenses</Typography>
+              {/* <Typography align="left" variant="h6">Expenses</Typography> */}
               <TableHead>
                 <TableRow>
                   <TableCell>Title</TableCell>
@@ -79,11 +79,11 @@ const Budget = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {budget.expenses.map(expense => <Transaction id={expense.name } transaction={expense}/>)}
+                {budget.expenses.map(expense => <Transaction key={expense.name } transaction={expense}/>)}
                 <TableRow >
-                  {/* <TableCell>{budget.expensesTotal.name}</TableCell>
-                  <TableCell>{budget.expensesTotal.budgeted}</TableCell>
-              <TableCell>{budget.expensesTotal.actual}</TableCell> */}
+                  <TableCell>{budget.expenseTotal.name}</TableCell>
+                  <TableCell>{budget.expenseTotal.budgeted}</TableCell>
+              <TableCell>{budget.expenseTotal.actual}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
