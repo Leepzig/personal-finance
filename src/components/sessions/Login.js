@@ -7,15 +7,19 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { useDispatch } from 'react-redux';
+import { login } from '../../actions/sessionAction';
 
 const Login = () => {
     const [form, handleFormChange] = useForm({
         email:"",
         password:"",
     })
+    const dispatch = useDispatch()
 
     const handleSubmit = e => {
         e.preventDefault()
+        dispatch(login(form))
     }
 
     return (
@@ -29,7 +33,7 @@ const Login = () => {
           }}
         >
           <Typography component="h1" variant="h5">
-            Sign up
+            Sign In
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -62,7 +66,7 @@ const Login = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign up
+              Sign In
             </Button>
             <Grid container>
               <Grid item xs>
