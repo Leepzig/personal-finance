@@ -1,14 +1,12 @@
 const initialState = {
-    income:[], 
-    expenses:[], 
-    header:"",
-    incomeTotal:0
+    name:"",
+    actual:"",
+    budgeted:""
 }
 
-export const budgetReducer = (state=initialState, action) => {
+export const transactionReducer = (state=initialState, action) => {
     switch(action.type) {
-        case "SET_BUDGET":
-            return {...state, income:action.payload.income, expenses: action.payload.expenses, header: action.payload.header, incomeTotal: action.payload.incomeTotal, expenseTotal: action.payload.expenseTotal}
+        //change add to new
         case "ADD_EXPENSE":
             return {...state, expenses:action.payload}
         case "ADD_INCOME":
