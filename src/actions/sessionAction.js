@@ -8,7 +8,7 @@ export const login = (details) => {
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(details)
         }
-        const response = await fetch(`${BaseURL}/api/v1/login`, options)
+        const response = await fetch(`${BaseURL}/login`, options)
         const data = await response.json()
 
         localStorage.setItem("jwt", data.jwt)
@@ -16,5 +16,6 @@ export const login = (details) => {
         dispatch({type:"FINISHED_REQUESTING"})
         //TODO a redirect will be needed here
         console.log("DO A REDIRECT!!!")
+        console.log(data)
     }
 }
