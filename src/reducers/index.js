@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
-import errorsReducer from "./errorsReducer.js";
+import errorReducer from "./errorReducer.js";
 import requestingReducer from "./requestingReducer";
-import sessionsReducer from "./sessionsReducer";
+import sessionReducer from "./sessionReducer";
 import budgetReducer from "./budgetReducer";
 import transactionReducer from "./transactionReducer"
 
 export default combineReducers({
-  errors: errorsReducer,
+  errors: errorReducer,
   requesting: requestingReducer,
-  sessions: sessionsReducer,
+  sessions: sessionReducer,
   budgets: budgetReducer,
   transactions:transactionReducer
 })

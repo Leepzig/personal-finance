@@ -19,3 +19,15 @@ export const login = (details) => {
         console.log(data)
     }
 }
+
+export const logout = (details) => {
+    return async dispatch => {
+        dispatch({type:"REQUESTING"})
+        dispatch({type:"LOGOUT"})
+        localStorage.clear()
+
+        dispatch({type:"FINSIHED_REQUESTING"})
+        console.log("USER SHOULD BE LOGGED OUT NOW")
+        //TODO a redirect!
+    }
+}

@@ -20,3 +20,4 @@ export const transactionReducer = (state=initialState, action) => {
     }
 
 }
+export default transactionReducer

@@ -4,9 +4,18 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../actions/sessionAction';
 
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+  const currentUser = useSelector(state => state)
+
+  const handleLogout = e => {
+    //Do I need to pass details to logout? pass the current user in?
+    dispatch(logout(currentUser))
+  }
 
     return (      
     <Box >
@@ -15,6 +24,7 @@ const Navbar = () => {
             <Button color="inherit"><NavLink to="/">Home</NavLink></Button>
             <Button color="inherit"><NavLink to="/login">Login</NavLink></Button>
             <Button color="inherit"><NavLink to="/signup">Sign up</NavLink></Button>
+            <Button color="inherit" onClick={handleLogout}>Sign Out</Button>
         </Toolbar>
       </AppBar>
     </Box> 

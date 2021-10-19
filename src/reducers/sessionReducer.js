@@ -3,7 +3,7 @@ const initialState = {
     currentUser:null
 }
 
-export const sessionsReducer = (state=initialState, action) => {
+const sessionReducer = (state=initialState, action) => {
     switch(action.type) {
         case "LOGIN":
             return {...state, currentUser:action.payload.user, loggedIn:true}
@@ -13,3 +13,4 @@ export const sessionsReducer = (state=initialState, action) => {
             return state
     }
 }
+export default sessionReducer

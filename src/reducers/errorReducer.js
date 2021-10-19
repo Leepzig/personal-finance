@@ -1,6 +1,6 @@
 const initialState = []
 
-export const errorReducer = (state=initialState, action) => {
+const errorReducer = (state=initialState, action) => {
     switch(action.type) {
         case "ERRORS":
             return action.payload
@@ -10,3 +10,4 @@ export const errorReducer = (state=initialState, action) => {
             return state
     }
 }
+export default errorReducer
