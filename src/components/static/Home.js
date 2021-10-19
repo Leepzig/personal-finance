@@ -1,8 +1,10 @@
 import React from 'react'
 import Budget from '../dynamic/Budget'
 
-const Home = () => {
 
+
+const Home = () => {
+    
 
     return (
         <div>

@@ -3,8 +3,15 @@ import Navbar from "./components/static/Navbar";
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Login from "./components/sessions/Login";
 import Signup from "./components/sessions/Signup";
+import { useEffect } from 'react'
+import { getCurrentUser } from './actions/sessionAction'
 
 function App() {
+  useEffect(() => {
+    console.log("USEEFFECT IS RUNNING!")
+    getCurrentUser()
+},[])
+
   return (
       <Router>
         <Navbar />

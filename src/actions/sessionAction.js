@@ -19,6 +19,26 @@ export const login = (details) => {
         console.log(data)
     }
 }
+export const getCurrentUser = () => {
+    console.log('he;llo')
+
+    return async dispatch => {
+
+        dispatch({type:"REQUESTING"})
+        console.log("getCurrentUser is running!")
+        debugger
+        const options = {
+            headers: {"Authorization":`Bearer ${localStorage.getItem('jwt')}`}
+        }
+        const response = await fetch(`${BaseURL}/get-current-user`, options)
+        const data  = await response.json()
+        console.log(data)
+        debugger
+        dispatch({type:"CURRENT_USER", payload:data})
+        dispatch({type:"FINISHED_REQUESTING"})
+
+    }
+}
 
 export const logout = (details) => {
     return async dispatch => {
