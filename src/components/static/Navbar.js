@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,11 +10,12 @@ import { logout } from '../../actions/sessionAction';
 
 const Navbar = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
   // const currentUser = useSelector(state => state.session.currentUser)
   const loggedIn = useSelector(state => state.sessions.loggedIn)
   const handleLogout = e => {
     //Do I need to pass details to logout? pass the current user in?
-    dispatch(logout())
+    dispatch(logout(history))
   }
 
     if (loggedIn) { return (      

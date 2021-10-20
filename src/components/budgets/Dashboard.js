@@ -21,7 +21,7 @@ const Dashboard = () => {
     )
     return (
         <div>
-            <Typography variant="h3">DashBoard</Typography>
+            <Typography variant="h4">DashBoard</Typography>
             <ul>
                 {budgets.map( budget => <li key={budget.id} onClick={() => handleBudgetClick(budget)}>{budget.header}</li>)}
             </ul>

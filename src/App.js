@@ -9,13 +9,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import Dashboard from "./components/budgets/Dashboard";
 
 function App() {
+
   const requesting = useSelector(state => state.requesting)
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getCurrentUser())
+    if (localStorage.getItem('jwt')){
+      dispatch(getCurrentUser())
+    }
 },[dispatch])
 
   if (requesting) return <h1>Loading...</h1>
+
   return (
       <Router>
         <Navbar />
@@ -24,6 +28,7 @@ function App() {
           <Route exact path="/budgets" component={ Dashboard }/>
           <Route exact path="/login" component={ Login }/>
           <Route exact path="/signup" component={ Signup }/>
+          {/* TODO add fail safe route */}
         </Switch >
       </Router>
   );

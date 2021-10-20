@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect} from 'react'
 import { useForm } from '../../hooks/useForm'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -7,19 +7,29 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../actions/sessionAction';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
+    const loggedIn = useSelector(state => state.sessions.loggedIn)
     const [form, handleFormChange] = useForm({
         email:"",
         password:"",
     })
+    const history = useHistory()
     const dispatch = useDispatch()
+
+    useEffect(() => {
+      if (loggedIn) {
+        history.push('/')
+      }
+    }, [loggedIn, history])
 
     const handleSubmit = e => {
         e.preventDefault()
         dispatch(login(form))
+        // history.push('/')
     }
 
     return (

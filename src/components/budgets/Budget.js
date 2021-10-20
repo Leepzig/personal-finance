@@ -64,7 +64,9 @@ const Budget = () => {
                   <TableCell align="right">{budget.incomeTotal.actual}</TableCell>
                 </TableRow>
               </TableBody>
-              {/* <Typography align="left" variant="h6">Expenses</Typography> */}
+              </Table>
+              <Typography align="left" variant="h6">Expenses</Typography>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell>Title</TableCell>

@@ -1,5 +1,4 @@
 import { BaseURL } from "../globals"
-import { useHistory } from "react-router"
 
 
 export const login = (details) => {
@@ -20,12 +19,12 @@ export const login = (details) => {
         //TODO a redirect will be needed here
         console.log("DO A REDIRECT!!!")
         console.log(data)
+        // debugger
+        // history.push('/')
     }
 }
 export const getCurrentUser = () => {
     return async dispatch => {
-        
-
         dispatch({type:"REQUESTING"})
         const options = {
             headers: {
@@ -38,20 +37,17 @@ export const getCurrentUser = () => {
         const data  = await response.json()
         console.log(data)
         dispatch({type:"CURRENT_USER", payload:data})
-        // dispatch({type:"SET_BUDGET", payload:data.budgets[0]})
         dispatch({type:"FINISHED_REQUESTING"})
 
     }
 }
 
-export const logout = () => {
-    return async dispatch => {
+export const logout = (history) => {
+    return dispatch => {
         dispatch({type:"REQUESTING"})
         dispatch({type:"LOGOUT"})
         localStorage.clear()
-
-        dispatch({type:"FINSIHED_REQUESTING"})
-        console.log("USER SHOULD BE LOGGED OUT NOW")
-        //TODO a redirect!
+        dispatch({type:"FINISHED_REQUESTING"})
+        history.push('/')
     }
 }
