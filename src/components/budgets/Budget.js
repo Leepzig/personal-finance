@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Transaction from './Transaction'
 import { useSelector, useDispatch } from 'react-redux'
-import { addExpense, addIncome, setBudget } from '../../actions/budgetAction'
+import { addExpense, addIncome } from '../../actions/budgetAction'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,36 +12,30 @@ import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-// import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
 
 const Budget = () => {
     const dispatch = useDispatch()
-    const budget = useSelector(state => state)
-    // const income = useSelector(state => state.income)
-
+    const budget = useSelector(state => state.budgets)
+  
     const Item = styled(Paper)(({ theme }) => ({
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-      }));
-
+      ...theme.typography.body2,
+      padding: theme.spacing(1),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+    }));
+    
     const addNewExpenseLine = () => {
-        const blankTransaction = {name:"", budgeted:"", actual:""}
-        dispatch(addExpense([...budget.expenses, blankTransaction]))
+      const blankTransaction = {name:"", budgeted:"", actual:""}
+      dispatch(addExpense([...budget.expenses, blankTransaction]))
     }
     const addNewIncomeLine = () => {
-        const blankTransaction = {name:"", budgeted:"", actual:""}
-        dispatch(addIncome([...budget.income, blankTransaction]))
+      const blankTransaction = {name:"", budgeted:"", actual:""}
+      dispatch(addIncome([...budget.income, blankTransaction]))
     }
-
-    useEffect(() => {
-        dispatch(setBudget())
-
-    },[dispatch])
+    
     return (
       <Box sx={{
             marginTop: 8,

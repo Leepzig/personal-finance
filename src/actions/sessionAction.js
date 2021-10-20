@@ -1,6 +1,9 @@
 import { BaseURL } from "../globals"
+import { useHistory } from "react-router"
+
 
 export const login = (details) => {
+
     return async dispatch => {
         dispatch({type:"REQUESTING"})
         const options = {
@@ -20,27 +23,28 @@ export const login = (details) => {
     }
 }
 export const getCurrentUser = () => {
-    console.log('he;llo')
-
     return async dispatch => {
+        
 
         dispatch({type:"REQUESTING"})
-        console.log("getCurrentUser is running!")
-        debugger
         const options = {
-            headers: {"Authorization":`Bearer ${localStorage.getItem('jwt')}`}
+            headers: {
+                "Authorization":`Bearer ${localStorage.getItem('jwt')}`,
+                "Content-Type":"applicaiton/json",
+                "Accept":"application/json"
+            }
         }
         const response = await fetch(`${BaseURL}/get-current-user`, options)
         const data  = await response.json()
         console.log(data)
-        debugger
         dispatch({type:"CURRENT_USER", payload:data})
+        // dispatch({type:"SET_BUDGET", payload:data.budgets[0]})
         dispatch({type:"FINISHED_REQUESTING"})
 
     }
 }
 
-export const logout = (details) => {
+export const logout = () => {
     return async dispatch => {
         dispatch({type:"REQUESTING"})
         dispatch({type:"LOGOUT"})

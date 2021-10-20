@@ -5,18 +5,23 @@ import Login from "./components/sessions/Login";
 import Signup from "./components/sessions/Signup";
 import { useEffect } from 'react'
 import { getCurrentUser } from './actions/sessionAction'
+import { useDispatch, useSelector } from 'react-redux'
+import Dashboard from "./components/budgets/Dashboard";
 
 function App() {
+  const requesting = useSelector(state => state.requesting)
+  const dispatch = useDispatch()
   useEffect(() => {
-    console.log("USEEFFECT IS RUNNING!")
-    getCurrentUser()
-},[])
+    dispatch(getCurrentUser())
+},[dispatch])
 
+  if (requesting) return <h1>Loading...</h1>
   return (
       <Router>
         <Navbar />
         <Switch >
           <Route exact path="/" component={ Home }/>
+          <Route exact path="/budgets" component={ Dashboard }/>
           <Route exact path="/login" component={ Login }/>
           <Route exact path="/signup" component={ Signup }/>
         </Switch >

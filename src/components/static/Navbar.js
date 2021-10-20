@@ -10,24 +10,34 @@ import { logout } from '../../actions/sessionAction';
 
 const Navbar = () => {
   const dispatch = useDispatch()
-  const currentUser = useSelector(state => state)
-
+  // const currentUser = useSelector(state => state.session.currentUser)
+  const loggedIn = useSelector(state => state.sessions.loggedIn)
   const handleLogout = e => {
     //Do I need to pass details to logout? pass the current user in?
-    dispatch(logout(currentUser))
+    dispatch(logout())
   }
 
-    return (      
+    if (loggedIn) { return (      
     <Box >
+      <AppBar position="static">
+        <Toolbar>
+            <Button color="inherit"><NavLink to="/">Home</NavLink></Button>
+            <Button color="inherit"><NavLink to="/budgets">Budgets</NavLink></Button>
+            <Button color="inherit" onClick={handleLogout}>Sign Out</Button>
+        </Toolbar>
+      </AppBar>
+    </Box> 
+    ) }
+    return (
+      <Box >
       <AppBar position="static">
         <Toolbar>
             <Button color="inherit"><NavLink to="/">Home</NavLink></Button>
             <Button color="inherit"><NavLink to="/login">Login</NavLink></Button>
             <Button color="inherit"><NavLink to="/signup">Sign up</NavLink></Button>
-            <Button color="inherit" onClick={handleLogout}>Sign Out</Button>
         </Toolbar>
       </AppBar>
-    </Box> 
+      </Box>
     )
 }
 

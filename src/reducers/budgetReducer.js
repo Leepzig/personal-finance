@@ -9,7 +9,7 @@ const initialState = {
 const budgetReducer = (state=initialState, action) => {
     switch(action.type) {
         case "SET_BUDGET":
-            return {...state, income:action.payload.income, expenses: action.payload.expenses, header: action.payload.header, incomeTotal: action.payload.incomeTotal, expenseTotal: action.payload.expenseTotal}
+            return {...state, income:action.payload.income, expenses: action.payload.expenses, header: action.payload.header, incomeTotal: action.payload.income_total, expenseTotal: action.payload.expense_total}
         case "ADD_EXPENSE":
             return {...state, expenses:action.payload}
         case "ADD_INCOME":
