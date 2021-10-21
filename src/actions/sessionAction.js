@@ -12,15 +12,10 @@ export const login = (details) => {
         }
         const response = await fetch(`${BaseURL}/login`, options)
         const data = await response.json()
-
         localStorage.setItem("jwt", data.jwt)
         dispatch({type:"LOGIN", payload: data})
         dispatch({type:"FINISHED_REQUESTING"})
-        //TODO a redirect will be needed here
-        console.log("DO A REDIRECT!!!")
-        console.log(data)
-        // debugger
-        // history.push('/')
+
     }
 }
 export const getCurrentUser = () => {
@@ -35,7 +30,6 @@ export const getCurrentUser = () => {
         }
         const response = await fetch(`${BaseURL}/get-current-user`, options)
         const data  = await response.json()
-        console.log(data)
         dispatch({type:"CURRENT_USER", payload:data})
         dispatch({type:"FINISHED_REQUESTING"})
 

@@ -29,8 +29,8 @@ const Transaction = ( {transaction} ) => {
               <TableCell component="th" scope="row">
                 <Input value={form.name} name="name" onChange={handleChange}/>
               </TableCell>
-              <TableCell align="right"><Input value={form.budgeted} name="budgeted" onChange={handleChange}/></TableCell>
-              <TableCell align="right"><Input value={form.actual} name="actual" onChange={handleChange}/></TableCell>
+              <TableCell align="right"><Input type="number" value={form.budgeted} name="budgeted" onChange={handleChange}/></TableCell>
+              <TableCell align="right"><Input type="number" value={form.actual} name="actual" onChange={handleChange}/></TableCell>
         </TableRow>
 
     )

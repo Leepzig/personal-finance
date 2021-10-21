@@ -19,7 +19,9 @@ import Stack from '@mui/material/Stack';
 const Budget = () => {
     const dispatch = useDispatch()
     const budget = useSelector(state => state.budgets)
-  
+
+    console.log("BUDGET LOADED FROM STATE:", budget)
+
     const Item = styled(Paper)(({ theme }) => ({
       ...theme.typography.body2,
       padding: theme.spacing(1),
@@ -27,13 +29,14 @@ const Budget = () => {
       color: theme.palette.text.secondary,
     }));
     
-    const addNewExpenseLine = () => {
-      const blankTransaction = {name:"", budgeted:"", actual:""}
-      dispatch(addExpense([...budget.expenses, blankTransaction]))
-    }
     const addNewIncomeLine = () => {
-      const blankTransaction = {name:"", budgeted:"", actual:""}
-      dispatch(addIncome([...budget.income, blankTransaction]))
+      const blankTransaction = {name:"", budgeted:0, actual:0, transaction_type:"income"}
+      dispatch(addIncome(blankTransaction, budget.id))
+    }
+
+    const addNewExpenseLine = () => {
+      const blankTransaction = {name:"", budgeted:0, actual:0, transaction_type:"expense"}
+      dispatch(addExpense( blankTransaction, budget.id))
     }
     
     return (
@@ -57,7 +60,7 @@ const Budget = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-              {budget.income.map(incomeTransaction => <Transaction key={incomeTransaction.name } transaction={incomeTransaction}/>)}
+              {budget.income.map(incomeTransaction => <Transaction key={incomeTransaction.id } transaction={incomeTransaction}/>)}
                 <TableRow >
                   <TableCell >{budget.incomeTotal.name}</TableCell>
                   <TableCell align="right">{budget.incomeTotal.budgeted}</TableCell>
@@ -75,7 +78,7 @@ const Budget = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {budget.expenses.map(expense => <Transaction key={expense.name } transaction={expense}/>)}
+                {budget.expenses.map(expense => <Transaction key={expense.id } transaction={expense}/>)}
                 <TableRow >
                   <TableCell>{budget.expenseTotal.name}</TableCell>
                   <TableCell>{budget.expenseTotal.budgeted}</TableCell>

@@ -1,47 +1,10 @@
-//testing data:
-// import { BaseURL } from "../globals"
-// const budgetInfo = {
-//     income:[{
-//         name:"mowing lawns",
-//         budgeted: 300,
-//         actual: 250
-//     },
-//     {
-//         name:"verizon salesman",
-//         budgeted: 1200,
-//         actual: 1200
-//     }, 
-//     {
-//         name:"verizon salesman 2nd half of the month",
-//         budgeted: 1200,
-//         actual: 1200
-//     }], 
-//     expenses:[{
-//         name:"electric bill",
-//         budgeted: 200,
-//         actual: 160
-//     },
-//     {
-//         name:"rent",
-//         budgeted: 700,
-//         actual: 700
-//     }, 
-//     {
-//         name:"car repair",
-//         budgeted: 0,
-//         actual: 200
-//     }], 
-//     header:"October 2021",
-//     incomeTotal:{name:"Total", budgeted:2300, actual:2500},
-//     expenseTotal:{name:"Total", budgeted: 2500, actual: 2400}
-// }
+import { BaseURL } from "../globals"
 
 
 export const setBudget = (budget) => {
     console.log("set budget is running")
+    console.log("Budget Data", budget)
     return async dispatch => {
-        console.log("async dispatch in setBudget is running")
-
         dispatch({type:"REQUESTING"})
         // const options = {"Authorization":`Bearer ${localStorage.getItem('jwt')}`}
         // const response = await fetch(`${BaseURL}/users/${currentUser.id}/budgets`, options)
@@ -52,18 +15,48 @@ export const setBudget = (budget) => {
     }
 }
 
-export const addExpense = (details) => {
+export const addExpense = (details, budgetId) => {
     return async dispatch => {
+        dispatch({type:"REQUESTING"})
         //details are all
-        const payload = details
-        dispatch({type:"ADD_EXPENSE", payload})
+        const options = {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json", 
+                "Accept":"application/json",
+                "Authorization":`Bearer ${localStorage.getItem('jwt')}`
+        },
+            body:JSON.stringify(details)
+        }
+        const response = await fetch(`${BaseURL}/budgets/${budgetId}/transactions`, options)
+        const data = await response.json()
+
+        dispatch({type:"ADD_EXPENSE", payload:data})
+        //TODO add a route that updates expense/incomeTotal here
+        dispatch({type:"FINISHED_REQUESTING"})
     }
 }
 
-export const addIncome = (details) => {
+export const addIncome = (details, budgetId) => {
     return async dispatch => {
-        const payload = details
-        dispatch({type:"ADD_INCOME", payload})
+        dispatch({type:"REQUESTING"})
+        //details are all
+        const options = {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json", 
+                "Accept":"application/json",
+                "Authorization":`Bearer ${localStorage.getItem('jwt')}`
+        },
+            body:JSON.stringify(details)
+        }
+        const response = await fetch(`${BaseURL}/budgets/${budgetId}/transactions`, options)
+        const data = await response.json()
+ 
+        dispatch({type:"ADD_INCOME", payload:data})
+        //TODO add a route that updates expense/incomeTotal here
+        dispatch({type:"FINISHED_REQUESTING"})
+        }
     }
 
 // export const newBudget = () => {
@@ -72,4 +65,3 @@ export const addIncome = (details) => {
 //         dispatch({type:"NEW_BUDGET", payload})
 //         }
 //     }
-}
