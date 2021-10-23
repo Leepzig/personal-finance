@@ -2,8 +2,7 @@ import { BaseURL } from "../globals"
 
 
 export const setBudget = (budget) => {
-    console.log("set budget is running")
-    console.log("Budget Data", budget)
+   
     return async dispatch => {
         dispatch({type:"REQUESTING"})
         // const options = {"Authorization":`Bearer ${localStorage.getItem('jwt')}`}
@@ -59,9 +58,26 @@ export const addIncome = (details, budgetId) => {
         }
     }
 
-// export const newBudget = () => {
-//     return async dispatch => {
-//         const payload = ""
-//         dispatch({type:"NEW_BUDGET", payload})
-//         }
-//     }
+    export const updateExpense = (formInfo, transactionId) => {
+        return async dispatch => {
+            dispatch({type:"REQUESTING"})
+            const options = {
+                method:"PATCH",
+                headers:{
+                    "Content-Type":"application/json", 
+                    "Accept":"application/json",
+                    "Authorization":`Bearer ${localStorage.getItem('jwt')}`
+                },
+                body:JSON.stringify(formInfo)
+            }
+            const response = await fetch(`${BaseURL}/transactions/${transactionId}`, options)
+            const data = await response.json()
+            console.log("DATA RECIVED FROM UPDATING TRANSACTION", data)
+            // debugger
+            //dispatch with data, confirm data returned is good from the backend, check the route
+            //The update expense is the only thing that is different, what can we do to make this reusable?
+            dispatch({type:"UPDATING_EXPENSE", payload: data})
+            dispatch({type:"FINISHED_REQUESTING"})
+        }
+    }
+    

@@ -14,13 +14,15 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import { Input } from '@mui/material';
+import { useForm } from "../../hooks/useForm"
 
 
 const Budget = () => {
-    const dispatch = useDispatch()
-    const budget = useSelector(state => state.budgets)
-
-    console.log("BUDGET LOADED FROM STATE:", budget)
+  const dispatch = useDispatch()
+  const budget = useSelector(state => state.budgets)
+  console.log("BUDGET BEING SET:", budget)
+  const [header, handleChangeHeader] = useForm({header:budget.header})
 
     const Item = styled(Paper)(({ theme }) => ({
       ...theme.typography.body2,
@@ -50,6 +52,7 @@ const Budget = () => {
         <Item>
           <TableContainer >
             <Typography variant="h4">{budget.header}</Typography>
+            {/* <Typography variant="h4"><Input value={header.header} onChange={handleChangeHeader}/></Typography> */}
             <Typography align="left" variant="h6">Income</Typography>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
@@ -73,8 +76,8 @@ const Budget = () => {
               <TableHead>
                 <TableRow>
                   <TableCell>Title</TableCell>
-                  <TableCell align="right">Expected Income</TableCell>
-                  <TableCell align="right">Actual Income</TableCell>
+                  <TableCell align="right">Expected Expense</TableCell>
+                  <TableCell align="right">Actual Expense</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
