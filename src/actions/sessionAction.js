@@ -44,13 +44,14 @@ export const logout = (history) => {
     }
 }
 
-export const createNewUser = (userForm) => {
+export const createNewUser = (userForm, history) => {
     return async dispatch => {
         dispatch({type:"REQUESTING"})
+        debugger
         const options = {
             method:"POST",
             headers: {
-                "Content-Type":"applicaiton/json",
+                "Content-Type":"application/json",
                 "Accept":"application/json"
             },
             body:JSON.stringify(userForm)
@@ -60,6 +61,7 @@ export const createNewUser = (userForm) => {
         localStorage.setItem("jwt", data.jwt)
         console.log("NEW USER:",data)
         dispatch({type:"NEW_USER", payload:data.user})
+        history.push('/')
         dispatch({type:"FINISHED_REQUESTING"})
     }
 }

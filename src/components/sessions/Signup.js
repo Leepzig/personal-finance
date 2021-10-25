@@ -7,19 +7,25 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { createNewUser } from '../../actions/sessionAction';
+import { useDispatch } from "react-redux"
+import { useHistory } from 'react-router-dom';
 
 
 const Signup = () => {
     const [form, handleFormChange] = useForm({
-        name:"",
+        first_name:"",
+        last_name:"",
         email:"",
         password:"",
         password_confirmation:""
     })
+    const dispatch = useDispatch()
+    const history = useHistory()
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(form)
+        dispatch(createNewUser(form, history))
     }
     return (
     <Container component="main" maxWidth="xs">
@@ -50,11 +56,23 @@ const Signup = () => {
             <TextField
               margin="normal"
               required
-              value={form.name}
+              value={form.first_name}
               onChange={handleFormChange}
               fullWidth
-              name="name"
-              label="Name"
+              name="first_name"
+              label="First Name"
+              type="text"
+              id="name"
+              autoComplete="current-password"
+            />
+            <TextField
+              margin="normal"
+              required
+              value={form.last_name}
+              onChange={handleFormChange}
+              fullWidth
+              name="last_name"
+              label="Last Name"
               type="text"
               id="name"
               autoComplete="current-password"
