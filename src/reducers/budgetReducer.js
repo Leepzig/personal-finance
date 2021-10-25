@@ -15,8 +15,7 @@ const budgetReducer = (state=initialState, action) => {
             const blankBudget = {income:[], expenses:[], header:action.payload.header, incomeTotal:{name:"Total", budgeted:0, actual:0}, ExpenseTotal:{name:"Total", budgeted:0, actual:0} }
             return {...state, currentBudget:blankBudget}
         case "ADD_EXPENSE":
-            return state
-            // return {...state, expenses:[...state.expenses, action.payload]}
+            return {...state, expenses:[...state.expenses, action.payload]}
         case "ADD_INCOME":
             return {...state, income:[...state.income, action.payload]}
         case "UPDATING_EXPENSE":

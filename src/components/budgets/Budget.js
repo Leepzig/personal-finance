@@ -1,7 +1,7 @@
 import React from 'react'
 import Transaction from './Transaction'
 import { useSelector, useDispatch } from 'react-redux'
-import { addExpense, addIncome } from '../../actions/budgetAction'
+import { addTransaction } from '../../actions/budgetAction'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -33,13 +33,13 @@ const Budget = () => {
     
     const addNewIncomeLine = () => {
       const blankTransaction = {name:"", budgeted:0, actual:0, transaction_type:"income"}
-      dispatch(addIncome(blankTransaction, budget.id))
+      dispatch(addTransaction(blankTransaction, budget.id))
     }
 
     const addNewExpenseLine = () => {
       // e.preventDefault()
       const blankTransaction = {name:"", budgeted:0, actual:0, transaction_type:"expense"}
-      dispatch(addExpense( blankTransaction, budget.id))
+      dispatch(addTransaction( blankTransaction, budget.id))
     }
     
     return (
