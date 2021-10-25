@@ -30,7 +30,7 @@ export const createBudget = (header, userId) => {
         dispatch({type:"FINISHED_REQUESTING"})
     }
 }
-
+//TODO REMOVE REQUESTING FROM ADD TRANSACITON
 export const addTransaction = (details, budgetId) => {
     return async dispatch => {
         dispatch({type:"REQUESTING"})

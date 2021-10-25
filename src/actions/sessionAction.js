@@ -2,7 +2,6 @@ import { BaseURL } from "../globals"
 
 
 export const login = (details) => {
-
     return async dispatch => {
         dispatch({type:"REQUESTING"})
         const options = {
@@ -32,7 +31,6 @@ export const getCurrentUser = () => {
         const data  = await response.json()
         dispatch({type:"CURRENT_USER", payload:data})
         dispatch({type:"FINISHED_REQUESTING"})
-
     }
 }
 
@@ -43,5 +41,25 @@ export const logout = (history) => {
         localStorage.clear()
         dispatch({type:"FINISHED_REQUESTING"})
         history.push('/')
+    }
+}
+
+export const createNewUser = (userForm) => {
+    return async dispatch => {
+        dispatch({type:"REQUESTING"})
+        const options = {
+            method:"POST",
+            headers: {
+                "Content-Type":"applicaiton/json",
+                "Accept":"application/json"
+            },
+            body:JSON.stringify(userForm)
+        }
+        const response = await fetch(`${BaseURL}/users`, options)
+        const data = await response.json()
+        localStorage.setItem("jwt", data.jwt)
+        console.log("NEW USER:",data)
+        dispatch({type:"NEW_USER", payload:data.user})
+        dispatch({type:"FINISHED_REQUESTING"})
     }
 }
