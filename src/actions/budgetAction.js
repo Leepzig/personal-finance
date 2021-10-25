@@ -55,10 +55,10 @@ export const addTransaction = (details, budgetId) => {
         }
     }
 }
-
-export const updateExpense = (formInfo, transactionId) => {
+//if working refactor into updateTransaction
+//Don't dispatch requesting if things are already loaded!!!
+export const updateTransaction = (formInfo, transactionId) => {
     return async dispatch => {
-        dispatch({type:"REQUESTING"})
         const options = {
             method:"PATCH",
             headers:{
@@ -71,11 +71,11 @@ export const updateExpense = (formInfo, transactionId) => {
         const response = await fetch(`${BaseURL}/transactions/${transactionId}`, options)
         const data = await response.json()
         console.log("DATA RECIVED FROM UPDATING TRANSACTION", data)
-        // debugger
-        //dispatch with data, confirm data returned is good from the backend, check the route
-        //The update expense is the only thing that is different, what can we do to make this reusable?
-        dispatch({type:"UPDATING_EXPENSE", payload: data})
-        dispatch({type:"FINISHED_REQUESTING"})
+        if (data.transaction_type === 'expense') {
+            dispatch({type:"UPDATING_EXPENSE", payload:data})
+        } else {
+            dispatch({type:"UPDATING_INCOME", payload:data})
+        }
     }
 }
 

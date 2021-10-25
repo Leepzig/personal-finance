@@ -14,15 +14,13 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import { Input } from '@mui/material';
-import { useForm } from "../../hooks/useForm"
+// import { useForm } from "../../hooks/useForm"
 
 
 const Budget = () => {
   const dispatch = useDispatch()
   const budget = useSelector(state => state.budgets)
   console.log("BUDGET BEING SET:", budget)
-  const [header, handleChangeHeader] = useForm({header:budget.header})
 
     const Item = styled(Paper)(({ theme }) => ({
       ...theme.typography.body2,
@@ -37,11 +35,22 @@ const Budget = () => {
     }
 
     const addNewExpenseLine = () => {
-      // e.preventDefault()
       const blankTransaction = {name:"", budgeted:0, actual:0, transaction_type:"expense"}
       dispatch(addTransaction( blankTransaction, budget.id))
     }
     
+    const totalReturner = (transaction_array) => {
+      if (transaction_array[0] !== undefined ) {
+          const budgeted_total = transaction_array.map(transaction => transaction.budgeted).reduce((previousValue, currentValue) => previousValue + currentValue)
+          const actual_total = transaction_array.map(transaction => transaction.actual).reduce((previousValue, currentValue) => previousValue + currentValue)
+          return {name:"Total", budgeted:budgeted_total, actual:actual_total}
+      } else {
+          return {name:"Total", budgeted:0, actual:0}
+      }
+  }
+ 
+  console.log("TOTAL TEST:",totalReturner(budget.expenses))
+
     return (
       <Box sx={{
             marginTop: 8,
@@ -67,8 +76,8 @@ const Budget = () => {
               {budget.income.map(incomeTransaction => <Transaction key={incomeTransaction.id } transaction={incomeTransaction}/>)}
                 <TableRow >
                   <TableCell >{budget.incomeTotal.name}</TableCell>
-                  <TableCell align="right">{budget.incomeTotal.budgeted}</TableCell>
-                  <TableCell align="right">{budget.incomeTotal.actual}</TableCell>
+                  <TableCell align="right">{totalReturner(budget.income).budgeted}</TableCell>
+                  <TableCell align="right">{totalReturner(budget.income).actual}</TableCell>
                 </TableRow>
               </TableBody>
               </Table>
@@ -84,9 +93,9 @@ const Budget = () => {
               <TableBody>
                 {budget.expenses.map(expense => <Transaction key={expense.id } transaction={expense}/>)}
                 <TableRow >
-                  <TableCell>{budget.expenseTotal.name}</TableCell>
-                  <TableCell>{budget.expenseTotal.budgeted}</TableCell>
-              <TableCell>{budget.expenseTotal.actual}</TableCell>
+                  <TableCell>Total</TableCell>
+                  <TableCell>{totalReturner(budget.expenses).budgeted}</TableCell>
+              <TableCell>{totalReturner(budget.expenses).actual}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>

@@ -3,7 +3,7 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Input from '@mui/material/Input';
 import { useDispatch } from 'react-redux';
-import { updateExpense } from '../../actions/budgetAction';
+import { updateTransaction } from '../../actions/budgetAction';
 import { Button } from '@mui/material';
 import { deleteTransaction } from "../../actions/budgetAction"
 
@@ -13,7 +13,8 @@ const Transaction = ( {transaction} ) => {
     const [form, setForm] = useState({
         name: transaction.name,
         budgeted: transaction.budgeted,
-        actual: transaction.actual
+        actual: transaction.actual,
+        transaction_type: transaction.transaction_type
     })
     const [showDelete, setShowDelete] = useState(false)
     const dispatch = useDispatch()
@@ -27,16 +28,9 @@ const Transaction = ( {transaction} ) => {
     const handleSubmitChange = e => {
         handleChange(e)
         const changingInput = {[e.target.name]:e.target.value}
-        handleUpdate(changingInput, transaction.id)
+        dispatch(updateTransaction(changingInput, transaction.id))
     }
 
-    const handleUpdate = (form, id) => {
-        if (transaction.transaction_type === "expense" ) {
-            dispatch(updateExpense(form, id))
-        } else {
-            //dispatch(updateIncome(form, transaction.id))
-        }
-    }
     const handleDelete = e => {
         dispatch(deleteTransaction(transaction))
     }
@@ -54,7 +48,7 @@ const Transaction = ( {transaction} ) => {
                 <Input value={form.name} name="name" onChange={handleSubmitChange}/>
               </TableCell>
               <TableCell align="right"><Input type="number" value={form.budgeted} name="budgeted" onChange={handleSubmitChange}/></TableCell>
-              <TableCell align="right"><Input type="number" value={form.actual} name="actual" onChange={handleChange}/></TableCell>
+              <TableCell align="right"><Input type="number" value={form.actual} name="actual" onChange={handleSubmitChange}/></TableCell>
               {showDelete ? <Button onClick={handleDelete} variant={'contained'} size="small">Delete</Button> : null}
         </TableRow>
 
