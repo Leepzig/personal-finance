@@ -37,6 +37,7 @@ const Budget = () => {
     }
 
     const addNewExpenseLine = () => {
+      // e.preventDefault()
       const blankTransaction = {name:"", budgeted:0, actual:0, transaction_type:"expense"}
       dispatch(addExpense( blankTransaction, budget.id))
     }
