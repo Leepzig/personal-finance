@@ -38,6 +38,7 @@ export const logout = (history) => {
     return dispatch => {
         dispatch({type:"REQUESTING"})
         dispatch({type:"LOGOUT"})
+        dispatch({type:"CLEAR_BUDGETS"})
         localStorage.clear()
         dispatch({type:"FINISHED_REQUESTING"})
         history.push('/')

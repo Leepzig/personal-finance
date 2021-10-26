@@ -1,31 +1,38 @@
 const initialState = {
-    id:"",
-    income:[], 
-    expenses:[], 
-    header:"",
-    incomeTotal:{},
-    expenseTotal:{}
+    budgets:[],
+    viewedBudget:{
+        id:"",
+        income:[], 
+        expenses:[], 
+        header:"",
+        incomeTotal:{},
+        expenseTotal:{}
+    }
 }
 
-const budgetReducer = (state=initialState, action) => {
-    switch(action.type) {
-        case "SET_BUDGET":
-            return {...state, id: action.payload.id, income:action.payload.income, expenses: action.payload.expenses, header: action.payload.header, incomeTotal: totalReturner(action.payload.income), expenseTotal: totalReturner(action.payload.expenses)}
+const budgetReducer = (state=initialState, {payload, type}) => {
+    switch(type) {
+        case "SET_BUDGET_VIEW":
+            return {...state, viewedBudget: {id: payload.id, income:payload.income, expenses: payload.expenses, header: payload.header}}
+        case "LOAD_ALL_BUDGETS":
+            return {...state, budgets: payload}
         case "NEW_BUDGET":
-            const blankBudget = {income:[], expenses:[], header:action.payload.header, incomeTotal:{name:"Total", budgeted:0, actual:0}, ExpenseTotal:{name:"Total", budgeted:0, actual:0} }
+            const blankBudget = {income:[], expenses:[], header:payload.header}
             return {...state, currentBudget:blankBudget}
         case "ADD_EXPENSE":
-            return {...state, expenses:[...state.expenses, action.payload]}
+            return {...state, expenses:[...state.viewedBudget.expenses, payload]}
         case "ADD_INCOME":
-            return {...state, income:[...state.income, action.payload]}
+            return {...state, income:[...state.viewedBudget.income, payload]}
         case "UPDATING_EXPENSE":
-            return {...state, expenses:filterAndReplace(state.expenses, action.payload)}
+            return {...state, expenses:filterAndReplace(state.viewedBudget.expenses, payload)}
         case "UPDATING_INCOME":
-            return {...state, income:filterAndReplace(state.income, action.payload)}
+            return {...state, income:filterAndReplace(state.viewedBudget.income, payload)}
         case "DELETE_EXPENSE":
-            return {...state, expenses: filterDeletedTransaction(state.expenses, action.payload)}
+            return {...state, expenses: filterDeletedTransaction(state.viewedBudget.expenses, payload)}
         case "DELETE_INCOME":
-            return {...state, income: filterDeletedTransaction(state.income, action.payload)}
+            return {...state, income: filterDeletedTransaction(state.viewedBudget.income, payload)}
+        case "CLEAR_BUDGETS":
+            return initialState
         default:
             return state
     }
@@ -44,17 +51,6 @@ const filterAndReplace = (array, replacement) => {
 
 const filterDeletedTransaction = (array, id) => {
     return array.filter(transaction => transaction.id !== id)
-}
-
-const totalReturner = (transaction_array) => {
-    // debugger
-    if (transaction_array !== undefined ) {
-        const budgeted_total = transaction_array.map(transaction => transaction.budgeted).reduce((previousValue, currentValue) => previousValue + currentValue)
-        const actual_total = transaction_array.map(transaction => transaction.actual).reduce((previousValue, currentValue) => previousValue + currentValue)
-        return {name:"Total", budgeted:budgeted_total, actual:actual_total}
-    } else {
-        return {name:"Total", budgeted:0, actual:0}
-    }
 }
 
 export default budgetReducer

@@ -19,7 +19,7 @@ import Stack from '@mui/material/Stack';
 
 const Budget = () => {
   const dispatch = useDispatch()
-  const budget = useSelector(state => state.budgets)
+  const budget = useSelector(state => state.budgets.viewedBudget)
   console.log("BUDGET BEING SET:", budget)
 
     const Item = styled(Paper)(({ theme }) => ({
@@ -49,8 +49,6 @@ const Budget = () => {
       }
   }
  
-  console.log("TOTAL TEST:",totalReturner(budget.expenses))
-
     return (
       <Box sx={{
             marginTop: 8,
@@ -75,7 +73,7 @@ const Budget = () => {
               <TableBody>
               {budget.income.map(incomeTransaction => <Transaction key={incomeTransaction.id } transaction={incomeTransaction}/>)}
                 <TableRow >
-                  <TableCell >{budget.incomeTotal.name}</TableCell>
+                  <TableCell >Total</TableCell>
                   <TableCell align="right">{totalReturner(budget.income).budgeted}</TableCell>
                   <TableCell align="right">{totalReturner(budget.income).actual}</TableCell>
                 </TableRow>

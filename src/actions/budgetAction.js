@@ -4,8 +4,26 @@ import { BaseURL } from "../globals"
 export const setBudget = (budget) => {
     return async dispatch => {
         dispatch({type:"REQUESTING"})
-        dispatch({type:"SET_BUDGET", payload: budget})
+        dispatch({type:"SET_BUDGET_VIEW", payload: budget})
         dispatch({type:"FINISHED_REQUESTING"})
+    }
+}
+
+export const loadAllBudgets = (userId) => {
+    return async dispatch => {
+        // dispatch({type:"REQUESTING"})
+        const options = {
+            headers:{
+                "Content-Type":"application/json", 
+                "Accept":"application/json",
+                "Authorization":`Bearer ${localStorage.getItem('jwt')}`
+        }
+    }
+        const response = await fetch(`${BaseURL}/users/${userId}/budgets`, options)
+        const data = await response.json()
+        dispatch({type:"LOAD_ALL_BUDGETS", payload: data})
+        console.log("ROUTE",`${BaseURL}/${userId}/budgets`)
+        // dispatch({type:"FINISHED_REQUESTING"})
     }
 }
 
