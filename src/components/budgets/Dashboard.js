@@ -21,6 +21,7 @@ const Dashboard = () => {
     // let loadedBudget = false
     const handleDisplayBudgetClick = budget => {
         dispatch(setBudget(budget))
+        dispatch(loadAllBudgets())
     }
 
     const handleNewBudgetClick = () => {

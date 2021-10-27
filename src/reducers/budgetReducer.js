@@ -22,6 +22,7 @@ const budgetReducer = (state=initialState, {payload, type}) => {
         case "ADD_INCOME":
             return {...state, viewedBudget:{ ...state.viewedBudget, income:[...state.viewedBudget.income, payload]}}
         case "UPDATING_EXPENSE":
+            console.log("STATE IS BEING UPDATED TO:",{...state, viewedBudget:{ ...state.viewedBudget, expenses:filterAndReplace(state.viewedBudget.expenses, payload)}})
             return {...state, viewedBudget:{ ...state.viewedBudget, expenses:filterAndReplace(state.viewedBudget.expenses, payload)}}
         case "UPDATING_INCOME":
             return {...state, viewedBudget:{...state.viewedBudget, income:filterAndReplace(state.viewedBudget.income, payload)}}
