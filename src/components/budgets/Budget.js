@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Transaction from './Transaction'
 import { useSelector, useDispatch } from 'react-redux'
 import { addTransaction } from '../../actions/budgetAction'
@@ -8,25 +8,30 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Typography } from '@mui/material';
+import { Input, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import { useForm } from '../../hooks/useForm';
 
 
 const Budget = () => {
   const dispatch = useDispatch()
   const budget = useSelector(state => state.budgets.viewedBudget)
-  // console.log("BUDGET BEING SET:", budget)
+  const [form, handleForm] = useForm({header:budget.header})
+  // const [focus, setFocus] = useState(false)
+  const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
-    const Item = styled(Paper)(({ theme }) => ({
-      ...theme.typography.body2,
-      padding: theme.spacing(1),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    }));
+  // const handleSetFocus = e => {
+  //   setFocus(!focus)
+  // }
     
     const addNewIncomeLine = () => {
       const blankTransaction = {name:"", budgeted:0, actual:0, transaction_type:"income"}
@@ -58,7 +63,8 @@ const Budget = () => {
           }}>
         <Item>
           <TableContainer >
-            <Typography variant="h4">{budget.header}</Typography>
+            <Typography variant="h4"><Input name="header" value={form.header} onChange={handleForm}/></Typography>
+            {/* <Typography variant="h4">{budget.header}</Typography> */}
             {/* <Typography variant="h4"><Input value={header.header} onChange={handleChangeHeader}/></Typography> */}
             <Typography align="left" variant="h6">Income</Typography>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">

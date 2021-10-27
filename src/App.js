@@ -18,7 +18,7 @@ function App() {
     }
 },[dispatch])
 
-  if (requesting) return <h1>Loading...</h1>
+  // if (requesting) return <h1>Loading...</h1>
 
   return (
       <Router>
