@@ -16,10 +16,9 @@ const Dashboard = () => {
     const dispatch = useDispatch()
     const [form, handleForm] = useForm({header:""})
     const [hiddenState, setHiddenState ] = useState(true)
-    //Something is wrong....that shouldn't run every key stroke
-    console.log("Does this run every update?")
     const history = useHistory()
-
+    //Should I keep track of this in state?
+    // let loadedBudget = false
     const handleDisplayBudgetClick = budget => {
         dispatch(setBudget(budget))
     }
@@ -33,13 +32,8 @@ const Dashboard = () => {
     }
     
     useEffect(()=> {
-        if (loggedIn) {
-            dispatch(loadAllBudgets(currentUser.id))
-        } else {
-            //TODO SET ERROR HERE
-            history.push("/")
-        }
-    }, [dispatch, currentUser.id, history, loggedIn])
+            dispatch(loadAllBudgets())
+    }, [dispatch])
     
     if (!loggedIn) return (
         <div>
@@ -59,7 +53,8 @@ const Dashboard = () => {
                 {budgets.map( budget => <li key={budget.id} onClick={() => handleDisplayBudgetClick(budget)}>{budget.header}</li>)}
             </ul>
             <hr/>
-            < Budget />
+            <Budget />
+            {/* { loadedBudget ? < Budget /> : null } */}
         </div>
     )
 }

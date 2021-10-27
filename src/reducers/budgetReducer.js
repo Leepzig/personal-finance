@@ -5,8 +5,6 @@ const initialState = {
         income:[], 
         expenses:[], 
         header:"",
-        incomeTotal:{},
-        expenseTotal:{}
     }
 }
 
@@ -24,9 +22,9 @@ const budgetReducer = (state=initialState, {payload, type}) => {
         case "ADD_INCOME":
             return {...state, income:[...state.viewedBudget.income, payload]}
         case "UPDATING_EXPENSE":
-            return {...state, expenses:filterAndReplace(state.viewedBudget.expenses, payload)}
+            return {...state, viewedBudget:{ ...state.viewedBudget, expenses:filterAndReplace(state.viewedBudget.expenses, payload)}}
         case "UPDATING_INCOME":
-            return {...state, income:filterAndReplace(state.viewedBudget.income, payload)}
+            return {...state, viewedBudget:{...state.viewedBudget, income:filterAndReplace(state.viewedBudget.income, payload)}}
         case "DELETE_EXPENSE":
             return {...state, expenses: filterDeletedTransaction(state.viewedBudget.expenses, payload)}
         case "DELETE_INCOME":

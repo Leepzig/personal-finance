@@ -9,7 +9,7 @@ export const setBudget = (budget) => {
     }
 }
 
-export const loadAllBudgets = (userId) => {
+export const loadAllBudgets = () => {
     return async dispatch => {
         // dispatch({type:"REQUESTING"})
         const options = {
@@ -19,10 +19,10 @@ export const loadAllBudgets = (userId) => {
                 "Authorization":`Bearer ${localStorage.getItem('jwt')}`
         }
     }
-        const response = await fetch(`${BaseURL}/users/${userId}/budgets`, options)
+        const response = await fetch(`${BaseURL}/budgets`, options)
         const data = await response.json()
         dispatch({type:"LOAD_ALL_BUDGETS", payload: data})
-        console.log("ROUTE",`${BaseURL}/${userId}/budgets`)
+        // console.log("ROUTE",`${BaseURL}/${userId}/budgets`)
         // dispatch({type:"FINISHED_REQUESTING"})
     }
 }
@@ -44,7 +44,6 @@ export const createBudget = (header, userId) => {
         // debugger
         dispatch({type:"NEW_BUDGET", payload:data})
         //TODO add a dispatch that adds the new budget to the list of budgets to click on
-        //TODO have the totals updated on the frontend instead of the back end
         dispatch({type:"FINISHED_REQUESTING"})
     }
 }
@@ -52,7 +51,6 @@ export const createBudget = (header, userId) => {
 export const addTransaction = (details, budgetId) => {
     return async dispatch => {
         dispatch({type:"REQUESTING"})
-        //details are all
         const options = {
             method:"POST",
             headers:{

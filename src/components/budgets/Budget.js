@@ -14,13 +14,12 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-// import { useForm } from "../../hooks/useForm"
 
 
 const Budget = () => {
   const dispatch = useDispatch()
   const budget = useSelector(state => state.budgets.viewedBudget)
-  console.log("BUDGET BEING SET:", budget)
+  // console.log("BUDGET BEING SET:", budget)
 
     const Item = styled(Paper)(({ theme }) => ({
       ...theme.typography.body2,
