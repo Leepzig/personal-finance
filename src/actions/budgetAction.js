@@ -11,7 +11,6 @@ export const setBudget = (budget) => {
 
 export const loadAllBudgets = () => {
     return async dispatch => {
-        // dispatch({type:"REQUESTING"})
         const options = {
             headers:{
                 "Content-Type":"application/json", 
@@ -22,8 +21,6 @@ export const loadAllBudgets = () => {
         const response = await fetch(`${BaseURL}/budgets`, options)
         const data = await response.json()
         dispatch({type:"LOAD_ALL_BUDGETS", payload: data})
-        // console.log("ROUTE",`${BaseURL}/${userId}/budgets`)
-        // dispatch({type:"FINISHED_REQUESTING"})
     }
 }
 
@@ -50,7 +47,6 @@ export const createBudget = (header, userId) => {
 //TODO REMOVE REQUESTING FROM ADD TRANSACITON
 export const addTransaction = (details, budgetId) => {
     return async dispatch => {
-        dispatch({type:"REQUESTING"})
         const options = {
             method:"POST",
             headers:{
@@ -64,10 +60,8 @@ export const addTransaction = (details, budgetId) => {
         const data = await response.json()
         if (details.transaction_type === 'expense') {
             dispatch({type:"ADD_EXPENSE", payload:data})
-            dispatch({type:"FINISHED_REQUESTING"})
         } else {
             dispatch({type:"ADD_INCOME", payload:data})
-            dispatch({type:"FINISHED_REQUESTING"})
         }
     }
 }
@@ -97,7 +91,6 @@ export const updateTransaction = (formInfo, transactionId) => {
 
 export const deleteTransaction = transaction => {
     return async dispatch => {
-        dispatch({type:"REQUESTING"})
         const options = {
             method:"DELETE",
             headers:{
@@ -112,10 +105,8 @@ export const deleteTransaction = transaction => {
 
         if (transaction.transaction_type === 'expense') {
             dispatch({type:"DELETE_EXPENSE", payload: transaction.id})
-            dispatch({type:"FINISHED_REQUESTING"})
         } else {
             dispatch({type:"DELETE_INCOME", payload: transaction.id})
-            dispatch({type:"FINISHED_REQUESTING"})
         }
     }
 }

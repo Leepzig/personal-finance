@@ -18,17 +18,17 @@ const budgetReducer = (state=initialState, {payload, type}) => {
             const blankBudget = {income:[], expenses:[], header:payload.header}
             return {...state, currentBudget:blankBudget}
         case "ADD_EXPENSE":
-            return {...state, expenses:[...state.viewedBudget.expenses, payload]}
+            return {...state, viewedBudget:{ ...state.viewedBudget, expenses:[...state.viewedBudget.expenses, payload]}}
         case "ADD_INCOME":
-            return {...state, income:[...state.viewedBudget.income, payload]}
+            return {...state, viewedBudget:{ ...state.viewedBudget, income:[...state.viewedBudget.income, payload]}}
         case "UPDATING_EXPENSE":
             return {...state, viewedBudget:{ ...state.viewedBudget, expenses:filterAndReplace(state.viewedBudget.expenses, payload)}}
         case "UPDATING_INCOME":
             return {...state, viewedBudget:{...state.viewedBudget, income:filterAndReplace(state.viewedBudget.income, payload)}}
         case "DELETE_EXPENSE":
-            return {...state, expenses: filterDeletedTransaction(state.viewedBudget.expenses, payload)}
+            return {...state, viewedBudget:{...state.viewedBudget, expenses: filterDeletedTransaction(state.viewedBudget.expenses, payload)}}
         case "DELETE_INCOME":
-            return {...state, income: filterDeletedTransaction(state.viewedBudget.income, payload)}
+            return {...state, viewedBudget:{...state.viewedBudget, income: filterDeletedTransaction(state.viewedBudget.income, payload)}}
         case "CLEAR_BUDGETS":
             return initialState
         default:
