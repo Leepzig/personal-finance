@@ -40,6 +40,7 @@ export const createBudget = (header, userId) => {
         const data = await response.json()
         // debugger
         dispatch({type:"NEW_BUDGET", payload:data})
+        dispatch({type:"SET_BUDGET_VIEW", payload:data})
         //TODO add a dispatch that adds the new budget to the list of budgets to click on
         dispatch({type:"FINISHED_REQUESTING"})
     }

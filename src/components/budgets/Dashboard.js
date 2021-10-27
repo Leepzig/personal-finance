@@ -8,6 +8,7 @@ import { useForm } from '../../hooks/useForm'
 import { Input } from '@mui/material'
 import { Box } from '@mui/system'
 import { useHistory } from 'react-router-dom'
+import BasicTabs from './BasicTabs'
 
 const Dashboard = () => {
     const currentUser = useSelector(state => state.sessions.currentUser)
@@ -35,6 +36,8 @@ const Dashboard = () => {
     useEffect(()=> {
             dispatch(loadAllBudgets())
     }, [dispatch])
+
+
     
     if (!loggedIn) return (
         <div>
@@ -53,6 +56,7 @@ const Dashboard = () => {
             <ul>
                 {budgets.map( budget => <li key={budget.id} onClick={() => handleDisplayBudgetClick(budget)}>{budget.header}</li>)}
             </ul>
+            {/* <BasicTabs /> */}
             <hr/>
             <Budget />
             {/* { loadedBudget ? < Budget /> : null } */}
