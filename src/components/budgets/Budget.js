@@ -20,7 +20,7 @@ import { useForm } from '../../hooks/useForm';
 const Budget = () => {
   const dispatch = useDispatch()
   const budget = useSelector(state => state.budgets.viewedBudget)
-  const [form, handleForm] = useForm({header:budget.header})
+  // const [form, handleForm] = useForm({header:budget.header})
   // const [focus, setFocus] = useState(false)
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -63,8 +63,8 @@ const Budget = () => {
           }}>
         <Item>
           <TableContainer >
-            <Typography variant="h4"><Input name="header" value={form.header} onChange={handleForm}/></Typography>
-            {/* <Typography variant="h4">{budget.header}</Typography> */}
+            {/* <Typography variant="h4"><Input name="header" value={form.header} onChange={handleForm}/></Typography> */}
+            <Typography variant="h4">{budget.header}</Typography>
             {/* <Typography variant="h4"><Input value={header.header} onChange={handleChangeHeader}/></Typography> */}
             <Typography align="left" variant="h6">Income</Typography>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">

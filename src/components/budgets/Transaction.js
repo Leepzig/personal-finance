@@ -10,15 +10,7 @@ import { deleteTransaction } from "../../actions/budgetAction"
 
 
 const Transaction = ( {transaction} ) => {
-    const focusedName = useRef(null)
-    const focusedBudgeted = useRef(null)
-    const focusedActual = useRef(null)
 
-    const [autofocus, setAutofocus] = useState({
-        name: false,
-        budgeted:false,
-        actual:false
-    })
     const [form, setForm] = useState({
         name: transaction.name,
         budgeted: transaction.budgeted,
@@ -34,38 +26,13 @@ const Transaction = ( {transaction} ) => {
         })
     }
 
-    //set autofocus to true onfocus
-    // set auto to false outofocus
-
     const handleSubmitChange = e => {
-        handleChange(e)
         const changingInput = {[e.target.name]:e.target.value}
         dispatch(updateTransaction(changingInput, transaction.id))
     }
 
     const handleDelete = e => {
         dispatch(deleteTransaction(transaction))
-    }
-
-    const handleFocusIn = e => {
-        console.log(e.target.name)
-        setAutofocus(
-            {...autofocus,
-            [e.target.name]:true}
-        )
-    }
-
-    const handleFocusRef = e => {
-        if (autofocus.name) {
-            focusedName.current.focus()
-        }
-    }
-
-    const handleFocusOut = e => {
-        setAutofocus(
-            {...autofocus,
-            [e.target.name]:false}
-        )
     }
 
     // useEffect(() => {
@@ -79,8 +46,6 @@ const Transaction = ( {transaction} ) => {
 
 //TODO Make it so that on focus for the <tr> the delete button appears
 
-console.log(autofocus)
-    handleFocusRef()
     return (
         <>
         <TableRow
@@ -90,10 +55,10 @@ console.log(autofocus)
             onMouseLeave={() => setShowDelete(false)}
             >
               <TableCell className="test" component="th" scope="row">
-                <Input inputRef={focusedName} autoFocus={autofocus.name} onClick={handleFocusIn} value={form.name} name="name" onChange={handleSubmitChange}/>
+                <Input value={form.name} onBlur={handleSubmitChange} name="name" onChange={handleChange}/>
               </TableCell>
-              <TableCell align="right"><Input ref={focusedBudgeted} autoFocus={autofocus.budgeted} type="number" value={form.budgeted} name="budgeted" onChange={handleSubmitChange}/></TableCell>
-              <TableCell align="right"><Input ref={focusedActual} autoFocus={autofocus.actual} type="number" value={form.actual} name="actual" onChange={handleSubmitChange}/></TableCell>
+              <TableCell align="right"><Input type="number" onBlur={handleSubmitChange} value={form.budgeted} name="budgeted" onChange={handleChange}/></TableCell>
+              <TableCell align="right"><Input type="number" onBlur={handleSubmitChange} value={form.actual} name="actual" onChange={handleChange}/></TableCell>
               {showDelete ? <Button onClick={handleDelete} variant={'contained'} size="small">Delete</Button> : null}
         </TableRow>
         </>
