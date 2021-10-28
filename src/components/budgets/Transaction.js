@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState} from 'react'
+import React, { useState} from 'react'
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Input from '@mui/material/Input';
@@ -34,15 +34,6 @@ const Transaction = ( {transaction} ) => {
     const handleDelete = e => {
         dispatch(deleteTransaction(transaction))
     }
-
-    // useEffect(() => {
-    //     setForm({
-    //     name: transaction.name,
-    //     budgeted: transaction.budgeted,
-    //     actual: transaction.actual,
-    //     transaction_type: transaction.transaction_type
-    // })
-    // }, [])
 
 //TODO Make it so that on focus for the <tr> the delete button appears
 
