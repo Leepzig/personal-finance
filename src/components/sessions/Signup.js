@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import { createNewUser } from '../../actions/sessionAction';
 import { useDispatch } from "react-redux"
 import { useHistory } from 'react-router-dom';
+import Errors from '../static/Errors';
 
 
 const Signup = () => {
@@ -29,6 +30,7 @@ const Signup = () => {
     }
     return (
     <Container component="main" maxWidth="xs">
+      <Errors />
         <Box
           sx={{
             marginTop: 8,
@@ -110,7 +112,7 @@ const Signup = () => {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/login" variant="body2">
                   {"Already Have an Account? Sign In"}
                 </Link>
               </Grid>

@@ -5,9 +5,10 @@ import { useSelector } from 'react-redux'
 const Errors = () => {
     const errors = useSelector(state => state.errors)
 
+
     return (
         <div>
-            <Typography color="red" variant="h6">{errors}</Typography>
+            {errors.map(error => <Typography color="red" variant="h6">{error}</Typography>)}
         </div>
     )
 }
