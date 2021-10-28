@@ -25,6 +25,9 @@ const Login = () => {
       if (loggedIn) {
         history.push('/')
       }
+      return () => {
+        dispatch({type:"CLEAR_ERRORS"})
+      }
     }, [loggedIn, history])
 
     const handleSubmit = e => {

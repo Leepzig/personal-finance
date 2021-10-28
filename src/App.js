@@ -1,6 +1,6 @@
 import Home from "./components/static/Home"
 import Navbar from "./components/static/Navbar";
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom'
 import Login from "./components/sessions/Login";
 import Signup from "./components/sessions/Signup";
 import { useEffect } from 'react'
@@ -10,7 +10,7 @@ import Dashboard from "./components/budgets/Dashboard";
 import Errors from "./components/static/Errors";
 
 function App() {
-
+  const history = useHistory()
   const requesting = useSelector(state => state.requesting)
   const dispatch = useDispatch()
   useEffect(() => {
@@ -18,6 +18,8 @@ function App() {
       dispatch(getCurrentUser())
     }
 },[dispatch])
+
+
 
   // if (requesting) return <h1>Loading...</h1>
 

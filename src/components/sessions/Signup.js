@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from '../../hooks/useForm'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -28,6 +28,12 @@ const Signup = () => {
         e.preventDefault()
         dispatch(createNewUser(form, history))
     }
+
+    useEffect(() => {
+      return () => {
+        dispatch({type:"CLEAR_ERRORS"})
+      }
+    },[dispatch])
     return (
     <Container component="main" maxWidth="xs">
       <Errors />
