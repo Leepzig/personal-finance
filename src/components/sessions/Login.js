@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../actions/sessionAction';
 import { useHistory } from 'react-router-dom';
+import Errors from "../static/Errors"
 
 const Login = () => {
     const loggedIn = useSelector(state => state.sessions.loggedIn)
@@ -34,6 +35,7 @@ const Login = () => {
 
     return (
         <Container component="main" maxWidth="xs">
+          <Errors />
         <Box
           sx={{
             marginTop: 8,
