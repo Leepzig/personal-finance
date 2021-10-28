@@ -38,11 +38,17 @@ export const createBudget = (header, userId) => {
         }
         const response = await fetch(`${BaseURL}/users/${userId}/budgets`, options)
         const data = await response.json()
-        // debugger
-        dispatch({type:"NEW_BUDGET", payload:data})
-        dispatch({type:"SET_BUDGET_VIEW", payload:data})
-        //TODO add a dispatch that adds the new budget to the list of budgets to click on
-        dispatch({type:"FINISHED_REQUESTING"})
+
+        if (data.errors) {
+            dispatch({type:"SET_ERRORS", payload: data.errors})
+        } else {
+            dispatch({type:"CLEAR_ERRORS"})
+            dispatch({type:"NEW_BUDGET", payload:data})
+            dispatch({type:"SET_BUDGET_VIEW", payload:data})
+            dispatch(loadAllBudgets())
+            //TODO add a dispatch that adds the new budget to the list of budgets to click on
+            dispatch({type:"FINISHED_REQUESTING"})
+        }
     }
 }
 export const addTransaction = (details, budgetId) => {

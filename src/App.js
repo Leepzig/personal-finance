@@ -24,7 +24,6 @@ function App() {
   return (
       <Router>
         <Navbar />
-        <Errors />
         <Switch >
           <Route exact path="/" component={ Home }/>
           <Route exact path="/budgets" component={ Dashboard }/>
