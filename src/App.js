@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import { getCurrentUser } from './actions/sessionAction'
 import { useDispatch, useSelector } from 'react-redux'
 import Dashboard from "./components/budgets/Dashboard";
+import Errors from "./components/static/Errors";
 
 function App() {
 

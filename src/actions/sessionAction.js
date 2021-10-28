@@ -11,9 +11,16 @@ export const login = (details) => {
         }
         const response = await fetch(`${BaseURL}/login`, options)
         const data = await response.json()
-        localStorage.setItem("jwt", data.jwt)
-        dispatch({type:"LOGIN", payload: data})
-        dispatch({type:"FINISHED_REQUESTING"})
+        // debugger
+        if (data.message) {
+            dispatch({type:"SET_ERRORS", payload:data.message})
+            dispatch({type:"FINISHED_REQUESTING"})
+        } else {
+            localStorage.setItem("jwt", data.jwt)
+            dispatch({type:"CLEAR_ERRORS"})
+            dispatch({type:"LOGIN", payload: [data.message]})
+            dispatch({type:"FINISHED_REQUESTING"})
+        }
 
     }
 }
@@ -48,7 +55,6 @@ export const logout = (history) => {
 export const createNewUser = (userForm, history) => {
     return async dispatch => {
         dispatch({type:"REQUESTING"})
-        debugger
         const options = {
             method:"POST",
             headers: {
@@ -59,10 +65,15 @@ export const createNewUser = (userForm, history) => {
         }
         const response = await fetch(`${BaseURL}/users`, options)
         const data = await response.json()
-        localStorage.setItem("jwt", data.jwt)
-        console.log("NEW USER:",data)
-        dispatch({type:"NEW_USER", payload:data.user})
-        history.push('/')
-        dispatch({type:"FINISHED_REQUESTING"})
+        debugger
+        if (data.errors) {
+            dispatch({type:"SET_ERRORS", payload:data.errors})
+        } else {
+            localStorage.setItem("jwt", data.jwt)
+            dispatch({type:"NEW_USER", payload:data.user})
+            dispatch({type:"CLEAR_ERRORS"})
+            history.push('/')
+            dispatch({type:"FINISHED_REQUESTING"})
+        }
     }
 }
