@@ -1,8 +1,9 @@
 import { Typography } from '@mui/material'
-import { Box } from '@mui/system'
 import React from 'react'
 import { Container } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Image from 'mui-image'
+import finance_photo from '../../../public/finance_photo.jpeg'
 
 
 
@@ -25,10 +26,13 @@ const Home = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Container style={{padding:"100px"}} maxWidth="md">
-                <Typography style={{}} variant="h4">Welcome to Your Personal Finance Helper</Typography><br/>
-                <Typography style={{fontSize:25, }} variant="body">Make a budget and record your progress on how your finances met your expectations in one month and adjust your expectations accordingly for the next month. </Typography>
-            </Container>
+            <Box >
+                <Container style={{padding:"100px"}} maxWidth="md">
+                    <Typography style={{}} variant="h4">Welcome to Your Personal Finance Helper</Typography><br/>
+                    <Typography style={{fontSize:25, }} variant="body">Make a budget and record your progress on how your finances met your expectations in one month and adjust your expectations accordingly for the next month. </Typography>
+                </Container>
+                <Image />
+            </Box>
         </ThemeProvider>
     )
 }

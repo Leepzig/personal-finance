@@ -7794,6 +7794,11 @@ ms@^2.1.1:
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
+mui-image@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/mui-image/-/mui-image-0.1.3.tgz#18c2b54602c68e01a043624445d650b90d948861"
+  integrity sha512-eli4h70PII3vYxNk8syYW+Sau/J2gPUlvYLZ7sqKXhQhRr9xmdvUCjlAxnNJqdGircyp8zhxhzCYjJmzz45GYg==
+
 multicast-dns-service-types@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/multicast-dns-service-types/-/multicast-dns-service-types-1.1.0.tgz"
