@@ -29,7 +29,7 @@ const Home = () => {
                     <Typography style={{}} variant="h4">Welcome to Your Personal Finance Helper</Typography><br/>
                     <Typography style={{fontSize:25, }} variant="body">Make a budget and record your progress on how your finances met your expectations in one month and adjust your expectations accordingly for the next month. </Typography>
                 </Container>
-                <Image />
+                <Image src="public/finance_photo.jpeg"/>
             </Box>
         </ThemeProvider>
     )

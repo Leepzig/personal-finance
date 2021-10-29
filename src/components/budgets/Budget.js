@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Transaction from './Transaction'
 import { useSelector, useDispatch } from 'react-redux'
 import { addTransaction } from '../../actions/budgetAction'
@@ -8,13 +8,12 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Input, TableFooter, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import { useForm } from '../../hooks/useForm';
 
 
 const Budget = () => {

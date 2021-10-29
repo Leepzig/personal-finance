@@ -28,7 +28,7 @@ const Login = () => {
       return () => {
         dispatch({type:"CLEAR_ERRORS"})
       }
-    }, [loggedIn, history])
+    }, [loggedIn, history, dispatch])
 
     const handleSubmit = e => {
         e.preventDefault()
