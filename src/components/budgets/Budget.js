@@ -8,7 +8,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Input, Typography } from '@mui/material';
+import { Input, TableFooter, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -67,20 +67,21 @@ const Budget = () => {
             <Typography variant="h4">{budget.header}</Typography>
             {/* <Typography variant="h4"><Input value={header.header} onChange={handleChangeHeader}/></Typography> */}
             <Typography align="left" variant="h6">Income</Typography>
-            <Table sx={{ minWidth: 750 }} aria-label="simple table">
+            <Table sx={{ minWidth: 750}} aria-label="simple table">
               <TableHead>
                 <TableRow >
-                  <TableCell>Title</TableCell>
-                  <TableCell align="right">Expected Income</TableCell>
-                  <TableCell sx={{marginRight: 50}} align="right">Actual Income</TableCell>
+                  <TableCell variant="header"sx={{}} align="left">Actual Income</TableCell>
+                  <TableCell variant="header">Title</TableCell>
+                  <TableCell variant="header"align="left">Expected Income</TableCell>
+                  <TableCell variant="header"sx={{}} align="left">Actions</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
               {budget.income.map(incomeTransaction => <Transaction key={incomeTransaction.id } transaction={incomeTransaction}/>)}
                 <TableRow >
                   <TableCell >Total</TableCell>
-                  <TableCell align="right">{totalReturner(budget.income).budgeted}</TableCell>
-                  <TableCell align="right">{totalReturner(budget.income).actual}</TableCell>
+                  <TableCell align="left">{totalReturner(budget.income).budgeted}</TableCell>
+                  <TableCell align="left">{totalReturner(budget.income).actual}</TableCell>
                 </TableRow>
               </TableBody>
               </Table>
@@ -88,9 +89,10 @@ const Budget = () => {
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Title</TableCell>
-                  <TableCell align="right">Expected Expense</TableCell>
-                  <TableCell align="right">Actual Expense</TableCell>
+                  <TableCell variant="header">Title</TableCell>
+                  <TableCell variant="header" align="left">Expected Expense</TableCell>
+                  <TableCell variant="header" align="left">Actual Expense</TableCell>
+                  <TableCell variant="header" align="left">Actions</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -98,7 +100,7 @@ const Budget = () => {
                 <TableRow >
                   <TableCell>Total</TableCell>
                   <TableCell>{totalReturner(budget.expenses).budgeted}</TableCell>
-              <TableCell>{totalReturner(budget.expenses).actual}</TableCell>
+                  <TableCell>{totalReturner(budget.expenses).actual}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>

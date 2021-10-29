@@ -18,7 +18,7 @@ const Transaction = ( {transaction} ) => {
         actual: transaction.actual,
         transaction_type: transaction.transaction_type
     })
-    const [showDelete, setShowDelete] = useState(false)
+    const [showDelete, setShowDelete] = useState('none')
     const dispatch = useDispatch()
 
     const handleChange = e => {
@@ -56,17 +56,18 @@ const Transaction = ( {transaction} ) => {
         <TableRow
             key={transaction.name}
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            onMouseEnter={() => setShowDelete(true)}
-            onMouseLeave={() => setShowDelete(false)}
+            onMouseEnter={() => setShowDelete('block')}
+            onMouseLeave={() => setShowDelete('none')}
             
             >
               <TableCell className="test" component="th" scope="row">
                 <Input value={form.name} onBlur={handleSubmitChange} name="name" onChange={handleChange}/>
               </TableCell>
-              <TableCell align="right"><Input onKeyPress={handleErrorDisplay} type="number" onBlur={handleSubmitChange} value={form.budgeted} name="budgeted" onChange={handleChange}/></TableCell>
-              <TableCell align="right"><Input onKeyPress={handleErrorDisplay} type="number" onBlur={handleSubmitChange} value={form.actual} name="actual" onChange={handleChange}/></TableCell>
-              {showDelete ? <Button onClick={handleDelete} variant={'contained'} size="small">Delete</Button> : null}
+              <TableCell align="left"><Input onKeyPress={handleErrorDisplay} type="number" onBlur={handleSubmitChange} value={form.budgeted} name="budgeted" onChange={handleChange}/></TableCell>
+              <TableCell align="left"><Input onKeyPress={handleErrorDisplay} type="number" onBlur={handleSubmitChange} value={form.actual} name="actual" onChange={handleChange}/></TableCell>
+              <Button style={{display:showDelete}}onClick={handleDelete} variant={'contained'} size="small">Delete</Button>
         </TableRow>
+              {/* {showDelete ? <Button onClick={handleDelete} variant={'contained'} size="small">Delete</Button> : null} */}
         </>
 
     )

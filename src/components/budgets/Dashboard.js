@@ -54,7 +54,13 @@ const Dashboard = () => {
         </div>
     )
     return (
-        <div>
+        <Box sx={{
+            marginTop: 8,
+            marginLeft:10,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
             <Typography variant="h4">DashBoard</Typography>
             <Button variant="text"size="small" onClick={handleNewBudgetClick}>New Budget</Button>
             <Box component="form" onSubmit={handleNewBudgetSubmit}>
@@ -80,7 +86,7 @@ const Dashboard = () => {
             </FormControl>
             <hr/>
             <Budget />
-        </div>
+        </Box>
     )
 }
 
