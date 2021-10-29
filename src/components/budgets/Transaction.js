@@ -49,8 +49,6 @@ const Transaction = ( {transaction} ) => {
         }
     }
 
-//TODO Make it so that on focus for the <tr> the delete button appears
-
     return (
         <>
         <TableRow
@@ -67,7 +65,6 @@ const Transaction = ( {transaction} ) => {
               <TableCell align="left"><Input onKeyPress={handleErrorDisplay} type="number" onBlur={handleSubmitChange} value={form.actual} name="actual" onChange={handleChange}/></TableCell>
               <Button style={{display:showDelete}}onClick={handleDelete} variant={'contained'} size="small">Delete</Button>
         </TableRow>
-              {/* {showDelete ? <Button onClick={handleDelete} variant={'contained'} size="small">Delete</Button> : null} */}
         </>
 
     )

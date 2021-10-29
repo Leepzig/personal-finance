@@ -46,7 +46,6 @@ export const createBudget = (header, userId) => {
             dispatch({type:"NEW_BUDGET", payload:data})
             dispatch({type:"SET_BUDGET_VIEW", payload:data})
             dispatch(loadAllBudgets())
-            //TODO add a dispatch that adds the new budget to the list of budgets to click on
             dispatch({type:"FINISHED_REQUESTING"})
         }
     }
@@ -71,8 +70,6 @@ export const addTransaction = (details, budgetId) => {
         }
     }
 }
-//if working refactor into updateTransaction
-//Don't dispatch requesting if things are already loaded!!!
 export const updateTransaction = (formInfo, transactionId) => {
     return async dispatch => {
         const options = {

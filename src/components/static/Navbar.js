@@ -11,10 +11,8 @@ import { logout } from '../../actions/sessionAction';
 const Navbar = () => {
   const dispatch = useDispatch()
   const history = useHistory()
-  // const currentUser = useSelector(state => state.session.currentUser)
   const loggedIn = useSelector(state => state.sessions.loggedIn)
   const handleLogout = e => {
-    //Do I need to pass details to logout? pass the current user in?
     dispatch(logout(history))
   }
 

@@ -20,7 +20,6 @@ const Home = () => {
             body: {
 
             }
-          // Tell MUI what's the font-size on the html element is.
         },
       });
 

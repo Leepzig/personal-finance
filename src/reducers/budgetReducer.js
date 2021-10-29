@@ -22,7 +22,6 @@ const budgetReducer = (state=initialState, {payload, type}) => {
         case "ADD_INCOME":
             return {...state, viewedBudget:{ ...state.viewedBudget, income:[...state.viewedBudget.income, payload]}}
         case "UPDATING_EXPENSE":
-            console.log("STATE IS BEING UPDATED TO:",{...state, viewedBudget:{ ...state.viewedBudget, expenses:filterAndReplace(state.viewedBudget.expenses, payload)}})
             return {...state, viewedBudget:{ ...state.viewedBudget, expenses:filterAndReplace(state.viewedBudget.expenses, payload)}}
         case "UPDATING_INCOME":
             return {...state, viewedBudget:{...state.viewedBudget, income:filterAndReplace(state.viewedBudget.income, payload)}}
@@ -36,8 +35,8 @@ const budgetReducer = (state=initialState, {payload, type}) => {
             return state
     }
 }
-            // TODO need to filter all transactions to recieve the new one and replace it in the same order that it was recived.
-
+//Helper Methods
+//Replaces the edited transaction the edited version
 const filterAndReplace = (array, replacement) => {
     return array.map(transaction => {
         if (transaction.id === replacement.id) {
@@ -47,7 +46,7 @@ const filterAndReplace = (array, replacement) => {
         }
     })
 }
-
+//returns an array without the deleted transaction
 const filterDeletedTransaction = (array, id) => {
     return array.filter(transaction => transaction.id !== id)
 }
