@@ -3,10 +3,8 @@ import React from 'react'
 import { Container } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Image from 'mui-image'
-import finance_photo from '../../../public/finance_photo.jpeg'
-
-
-
+import { Box } from '@mui/system';
+// import finance_photo from '../../../public/finance_photo.jpeg'
 
 const Home = () => {
     const theme = createTheme({
