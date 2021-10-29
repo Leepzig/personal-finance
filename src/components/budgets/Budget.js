@@ -67,7 +67,7 @@ const Budget = () => {
             <Typography variant="h4">{budget.header}</Typography>
             {/* <Typography variant="h4"><Input value={header.header} onChange={handleChangeHeader}/></Typography> */}
             <Typography align="left" variant="h6">Income</Typography>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table sx={{ minWidth: 750 }} aria-label="simple table">
               <TableHead>
                 <TableRow >
                   <TableCell>Title</TableCell>

@@ -44,7 +44,6 @@ const Dashboard = () => {
     const handleDisplayBudgetClick = e => {
         dispatch(setBudget(e.target.value))
         dispatch(loadAllBudgets())
-        debugger
         setCurrentBudget(e.target.value.header)
         dispatch(clearErrors())
     }

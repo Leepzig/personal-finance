@@ -58,6 +58,7 @@ const Transaction = ( {transaction} ) => {
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             onMouseEnter={() => setShowDelete(true)}
             onMouseLeave={() => setShowDelete(false)}
+            
             >
               <TableCell className="test" component="th" scope="row">
                 <Input value={form.name} onBlur={handleSubmitChange} name="name" onChange={handleChange}/>
