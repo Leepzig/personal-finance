@@ -8,7 +8,7 @@ const Errors = () => {
 
     return (
         <div>
-            {errors.map(error => <Typography color="red" variant="h6">{error}</Typography>)}
+            {errors.map((error, index )=> <Typography key={index} color="red" variant="h6">{error}</Typography>)}
         </div>
     )
 }
