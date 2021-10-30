@@ -30,9 +30,9 @@ const Dashboard = () => {
 
     const handleNewBudgetSubmit = e => {
         e.preventDefault()
-        debugger
         dispatch(createBudget(form, currentUser.id))
         resetForm()
+        setCurrentBudget(true)
     }
     
     useEffect(()=> {
