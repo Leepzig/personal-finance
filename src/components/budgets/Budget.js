@@ -67,8 +67,8 @@ const Budget = () => {
             <Table sx={{ minWidth: 750}} aria-label="simple table">
               <TableHead>
                 <TableRow >
-                  <TableCell variant="header"sx={{}} align="left">Actual Income</TableCell>
                   <TableCell variant="header">Title</TableCell>
+                  <TableCell variant="header"sx={{}} align="left">Actual Income</TableCell>
                   <TableCell variant="header"align="left">Expected Income</TableCell>
                   <TableCell variant="header"sx={{}} align="left">Actions</TableCell>
                 </TableRow>

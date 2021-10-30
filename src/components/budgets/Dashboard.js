@@ -22,7 +22,7 @@ const Dashboard = () => {
     const dispatch = useDispatch()
     const [form, handleForm, resetForm] = useForm({header:""})
     const [hiddenState, setHiddenState ] = useState(true)
-    const [currentBudget, setCurrentBudget] = useState("")
+    const [currentBudget, setCurrentBudget] = useState(null)
 
     const handleNewBudgetClick = () => {
         setHiddenState(!hiddenState)
@@ -30,6 +30,7 @@ const Dashboard = () => {
 
     const handleNewBudgetSubmit = e => {
         e.preventDefault()
+        debugger
         dispatch(createBudget(form, currentUser.id))
         resetForm()
     }
@@ -85,7 +86,7 @@ const Dashboard = () => {
                 <FormHelperText>Choose a Budget or create a new one.</FormHelperText>
             </FormControl>
             <hr/>
-            <Budget />
+            {currentBudget ? <Budget /> : null}
         </Box>
     )
 }

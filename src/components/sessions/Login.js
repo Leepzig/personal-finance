@@ -32,6 +32,7 @@ const Login = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
+        debugger
         dispatch(login(form))
     }
 

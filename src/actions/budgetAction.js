@@ -83,7 +83,6 @@ export const updateTransaction = (formInfo, transactionId) => {
         }
         const response = await fetch(`${BaseURL}/transactions/${transactionId}`, options)
         const data = await response.json()
-        console.log("DATA RECIVED FROM UPDATING TRANSACTION", data)
         if (data.transaction_type === 'expense') {
             dispatch({type:"UPDATING_EXPENSE", payload:data})
         } else {
@@ -104,8 +103,6 @@ export const deleteTransaction = transaction => {
     }
         const response = await fetch(`${BaseURL}/transactions/${transaction.id}`, options)
         const data = await response.json()
-        console.log(data)
-
         if (transaction.transaction_type === 'expense') {
             dispatch({type:"DELETE_EXPENSE", payload: transaction.id})
         } else {

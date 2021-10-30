@@ -3,6 +3,7 @@ import { BaseURL } from "../globals"
 
 export const login = (details) => {
     return async dispatch => {
+        debugger
         dispatch({type:"REQUESTING"})
         const options = {
             method:"POST",
@@ -11,13 +12,14 @@ export const login = (details) => {
         }
         const response = await fetch(`${BaseURL}/login`, options)
         const data = await response.json()
+        debugger
         if (data.message) {
             dispatch({type:"SET_ERRORS", payload:[data.message]})
             dispatch({type:"FINISHED_REQUESTING"})
         } else {
             localStorage.setItem("jwt", data.jwt)
             dispatch({type:"CLEAR_ERRORS"})
-            dispatch({type:"LOGIN", payload: [data.message]})
+            dispatch({type:"LOGIN", payload: data.user})
             dispatch({type:"FINISHED_REQUESTING"})
         }
 
