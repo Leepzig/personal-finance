@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { updateTransaction } from '../../actions/budgetAction';
 import { Button } from '@mui/material';
 import { deleteTransaction } from "../../actions/budgetAction"
-import { clearErrors, setErrors } from '../../actions/errorAction';
+import { clearErrors, setTransactionErrors } from '../../actions/errorAction';
 
 
 
@@ -45,7 +45,7 @@ const Transaction = ( {transaction} ) => {
         nums.includes(e.key)
         if (!regex.test(e.key) && e.keyCode !== 8 && e.keyCode !== 13) {
             const errors = ["Budgeted and Actual must be a number"]
-            dispatch(setErrors(errors))
+            dispatch(setTransactionErrors(errors))
         }
         else {
             dispatch(clearErrors())
