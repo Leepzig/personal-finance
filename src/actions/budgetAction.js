@@ -1,10 +1,10 @@
 import { BaseURL } from "../globals"
 
 
-export const setBudget = (budget) => {
+export const setBudget = (budgetId) => {
     return async dispatch => {
         dispatch({type:"REQUESTING"})
-        dispatch({type:"SET_BUDGET_VIEW", payload: budget})
+        dispatch({type:"SET_BUDGET_VIEW", payload: budgetId})
         dispatch({type:"FINISHED_REQUESTING"})
     }
 }
@@ -24,7 +24,7 @@ export const loadAllBudgets = () => {
     }
 }
 
-export const createBudget = (header, userId) => {
+export const createBudget = (header, userId, budgetsLength) => {
     return async dispatch => {
         dispatch({type:"REQUESTING"})
         const options = {
@@ -44,8 +44,7 @@ export const createBudget = (header, userId) => {
         } else {
             dispatch({type:"CLEAR_ERRORS"})
             dispatch({type:"NEW_BUDGET", payload:data})
-            dispatch({type:"SET_BUDGET_VIEW", payload:data})
-            dispatch(loadAllBudgets())
+            dispatch({type:"SET_BUDGET_VIEW", payload:budgetsLength})
             dispatch({type:"FINISHED_REQUESTING"})
         }
     }
@@ -103,6 +102,7 @@ export const deleteTransaction = transaction => {
     }
         const response = await fetch(`${BaseURL}/transactions/${transaction.id}`, options)
         const data = await response.json()
+        debugger
         if (transaction.transaction_type === 'expense') {
             dispatch({type:"DELETE_EXPENSE", payload: transaction.id})
         } else {

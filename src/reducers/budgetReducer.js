@@ -11,12 +11,12 @@ const initialState = {
 const budgetReducer = (state=initialState, {payload, type}) => {
     switch(type) {
         case "SET_BUDGET_VIEW":
-            return {...state, viewedBudget: {id: payload.id, income:payload.income, expenses: payload.expenses, header: payload.header}}
+            const foundBudget = findBudgetByIndex(payload, state.budgets)
+            return {...state, viewedBudget: {id: foundBudget.id, income:foundBudget.income, expenses: foundBudget.expenses, header: foundBudget.header}}
         case "LOAD_ALL_BUDGETS":
             return {...state, budgets: payload}
         case "NEW_BUDGET":
-            const blankBudget = {income:[], expenses:[], header:payload.header}
-            return {...state, currentBudget:blankBudget}
+            return {...state, budgets:[...state.budgets, payload]}
         case "ADD_EXPENSE":
             return {...state, viewedBudget:{ ...state.viewedBudget, expenses:[...state.viewedBudget.expenses, payload]}}
         case "ADD_INCOME":
@@ -51,4 +51,7 @@ const filterDeletedTransaction = (array, id) => {
     return array.filter(transaction => transaction.id !== id)
 }
 
+const findBudgetByIndex = (index, budgets) => {
+    return budgets[index]
+}
 export default budgetReducer

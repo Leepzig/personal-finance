@@ -11,7 +11,6 @@ import Errors from '../static/Errors'
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { InputLabel } from '@mui/material'
 import { clearErrors } from '../../actions/errorAction'
 
 
@@ -23,6 +22,7 @@ const Dashboard = () => {
     const [form, handleForm, resetForm] = useForm({header:""})
     const [hiddenState, setHiddenState ] = useState(true)
     const [currentBudget, setCurrentBudget] = useState(null)
+    const [selectedBudget, setSelectedBudget] = useState(0)
 
     const handleNewBudgetClick = () => {
         setHiddenState(!hiddenState)
@@ -30,9 +30,10 @@ const Dashboard = () => {
 
     const handleNewBudgetSubmit = e => {
         e.preventDefault()
-        dispatch(createBudget(form, currentUser.id))
+        dispatch(createBudget(form, currentUser.id, budgets.length))
         resetForm()
         setCurrentBudget(true)
+        setSelectedBudget(e.target.value)
     }
     
     useEffect(()=> {
@@ -43,9 +44,10 @@ const Dashboard = () => {
     }, [dispatch])
 
     const handleDisplayBudgetClick = e => {
-        dispatch(setBudget(e.target.value))
         dispatch(loadAllBudgets())
-        setCurrentBudget(e.target.value.header)
+        dispatch(setBudget(e.target.value))
+        setSelectedBudget(e.target.value)
+        setCurrentBudget(true)
         dispatch(clearErrors())
     }
     
@@ -71,16 +73,15 @@ const Dashboard = () => {
             
             </Box>
             <FormControl sx={{ m: 1, minWidth: 200 }}>
-                <InputLabel id="budget-selector">Budget Label</InputLabel>
                 <Select
                 labelId="budget-selector"
                 id="budget-selector"
-                value={currentBudget}
-                label="Age"
+                value={selectedBudget}
                 onChange={handleDisplayBudgetClick}
+                defaultValue="Choose a Budget"
                 >
-                    {budgets.map(budget=> {
-                        return <MenuItem value={budget}>{budget.header}</MenuItem>}
+                    {budgets.map((budget, index )=> {
+                        return <MenuItem key={budget.id} value={index}>{budget.header}</MenuItem>}
                     )}
                 </Select>
                 <FormHelperText>Choose a Budget or create a new one.</FormHelperText>
