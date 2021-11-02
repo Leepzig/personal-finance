@@ -3,8 +3,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 const TransactionErrors = () => {
-    const errors = useSelector(state => state.errorsTransactionerrors)
-
+    const errors = useSelector(state => state.errors.Transactionerrors)
+    
 
     return (
         <div>

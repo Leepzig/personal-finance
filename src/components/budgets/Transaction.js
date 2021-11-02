@@ -39,11 +39,11 @@ const Transaction = ( {transaction} ) => {
     }
 
     const handleErrorDisplay = e => {
-        const regex = RegExp(/\D/)
+        const regex = RegExp(/\d/)
         console.log(regex.test(e.key))
         // const nums = [0,1,2,3,4,5,6,7,8,9]
         // nums.includes(e.key)
-        if (regex.test(e.key) && e.keyCode !== 8 && e.keyCode !== 13) {
+        if (!regex.test(e.key) && e.keyCode !== 8 && e.keyCode !== 13) {
             const errors = ["Budgeted and Actual must be a number"]
             dispatch(setTransactionErrors(errors))
         }
