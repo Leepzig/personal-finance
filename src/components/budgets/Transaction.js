@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import { updateTransaction } from '../../actions/budgetAction';
 import { Button } from '@mui/material';
 import { deleteTransaction } from "../../actions/budgetAction"
-import { clearErrors, setTransactionErrors } from '../../actions/errorAction';
 
 
 
@@ -22,7 +21,6 @@ const Transaction = ( {transaction} ) => {
     const dispatch = useDispatch()
 
     const handleChange = e => {
-        handleErrorDisplay(e)
         setForm({...form,
             [e.target.name]:e.target.value
         })
@@ -38,20 +36,6 @@ const Transaction = ( {transaction} ) => {
         dispatch(deleteTransaction(transaction))
     }
 
-    const handleErrorDisplay = e => {
-        const regex = RegExp(/\d/)
-        console.log(regex.test(e.key))
-        // const nums = [0,1,2,3,4,5,6,7,8,9]
-        // nums.includes(e.key)
-        if (!regex.test(e.key) && e.keyCode !== 8 && e.keyCode !== 13) {
-            const errors = ["Budgeted and Actual must be a number"]
-            dispatch(setTransactionErrors(errors))
-        }
-        else {
-            dispatch(clearErrors())
-        }
-    }
-
     return (
         <>
         <TableRow
@@ -64,8 +48,8 @@ const Transaction = ( {transaction} ) => {
               <TableCell className="test" component="th" scope="row">
                 <Input value={form.name} onBlur={handleSubmitChange} name="name" onChange={handleChange}/>
               </TableCell>
-              <TableCell align="left"><Input onKeyPress={handleErrorDisplay} type="number" onBlur={handleSubmitChange} value={form.budgeted} name="budgeted" onChange={handleChange}/></TableCell>
-              <TableCell align="left"><Input onKeyPress={handleErrorDisplay} type="number" onBlur={handleSubmitChange} value={form.actual} name="actual" onChange={handleChange}/></TableCell>
+              <TableCell align="left"><Input type="number" onBlur={handleSubmitChange} value={form.budgeted} name="budgeted" onChange={handleChange}/></TableCell>
+              <TableCell align="left"><Input type="number" onBlur={handleSubmitChange} value={form.actual} name="actual" onChange={handleChange}/></TableCell>
               <Button style={{display:showDelete}}onClick={handleDelete} variant={'contained'} size="small">Delete</Button>
         </TableRow>
         </>
