@@ -22,7 +22,7 @@ const Dashboard = () => {
     const [form, handleForm, resetForm] = useForm({header:""})
     const [hiddenState, setHiddenState ] = useState(true)
     const [currentBudget, setCurrentBudget] = useState(null)
-    const [selectedBudget, setSelectedBudget] = useState(0)
+    const [selectedBudget, setSelectedBudget] = useState("")
 
     const handleNewBudgetClick = () => {
         setHiddenState(!hiddenState)
