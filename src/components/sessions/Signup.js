@@ -8,12 +8,14 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createNewUser } from '../../actions/sessionAction';
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from 'react-router-dom';
 import Errors from '../static/Errors';
 
 
 const Signup = () => {
+  const loggedIn = useSelector(state => state.sessions.loggedIn)
+
     const [form, handleFormChange] = useForm({
         first_name:"",
         last_name:"",
@@ -30,10 +32,13 @@ const Signup = () => {
     }
 
     useEffect(() => {
+      if (loggedIn) {
+        history.push('/')
+      }
       return () => {
         dispatch({type:"CLEAR_ERRORS"})
       }
-    },[dispatch])
+    }, [loggedIn, history, dispatch])
     return (
     <Container component="main" maxWidth="xs">
       <Errors />

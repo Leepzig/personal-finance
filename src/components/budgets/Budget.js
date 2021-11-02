@@ -20,18 +20,12 @@ import TransactionErrors from '../static/Errors';
 const Budget = () => {
   const dispatch = useDispatch()
   const budget = useSelector(state => state.budgets.viewedBudget)
-  // const [form, handleForm] = useForm({header:budget.header})
-  // const [focus, setFocus] = useState(false)
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   }));
-
-  // const handleSetFocus = e => {
-  //   setFocus(!focus)
-  // }
     
     const addNewIncomeLine = () => {
       const blankTransaction = {name:"", budgeted:0, actual:0, transaction_type:"income"}

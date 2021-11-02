@@ -102,11 +102,10 @@ export const deleteTransaction = transaction => {
     }
         const response = await fetch(`${BaseURL}/transactions/${transaction.id}`, options)
         const data = await response.json()
-        debugger
         if (transaction.transaction_type === 'expense') {
-            dispatch({type:"DELETE_EXPENSE", payload: transaction.id})
+            dispatch({type:"DELETE_EXPENSE", payload: transaction.id, message:data.message})
         } else {
-            dispatch({type:"DELETE_INCOME", payload: transaction.id})
+            dispatch({type:"DELETE_INCOME", payload: transaction.id, message:data.message})
         }
     }
 }
