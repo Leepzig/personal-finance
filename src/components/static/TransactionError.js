@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 const TransactionErrors = () => {
     const errors = useSelector(state => state.errors.Transactionerrors)
-    
+    debugger
 
     return (
         <div>

@@ -14,7 +14,6 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import TransactionErrors from '../static/Errors';
 
 
 const Budget = () => {
@@ -55,8 +54,8 @@ const Budget = () => {
             flexDirection: 'column',
             alignItems: 'center',
           }}>
+          
         <Item>
-          <TransactionErrors />
           <TableContainer >
             <Typography variant="h4">{budget.header}</Typography>
             <Typography align="left" variant="h6">Income</Typography>

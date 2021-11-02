@@ -12,6 +12,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { clearErrors } from '../../actions/errorAction'
+import TransactionErrors from '../static/TransactionError'
 
 
 const Dashboard = () => {
@@ -87,6 +88,7 @@ const Dashboard = () => {
                 <FormHelperText>Choose a Budget or create a new one.</FormHelperText>
             </FormControl>
             <hr/>
+            <TransactionErrors />
             {currentBudget ? <Budget /> : null}
         </Box>
     )

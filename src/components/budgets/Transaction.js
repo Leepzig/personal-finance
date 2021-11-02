@@ -43,7 +43,8 @@ const Transaction = ( {transaction} ) => {
         console.log(regex.test(e.key))
         // const nums = [0,1,2,3,4,5,6,7,8,9]
         // nums.includes(e.key)
-        if (!regex.test(e.key) && e.keyCode !== 8 && e.keyCode !== 13) {
+        //&& e.keyCode !== 8 && e.keyCode !== 13
+        if (!regex.test(e.key) ) {
             const errors = ["Budgeted and Actual must be a number"]
             dispatch(setTransactionErrors(errors))
         }
@@ -64,8 +65,8 @@ const Transaction = ( {transaction} ) => {
               <TableCell className="test" component="th" scope="row">
                 <Input value={form.name} onBlur={handleSubmitChange} name="name" onChange={handleChange}/>
               </TableCell>
-              <TableCell align="left"><Input onKeyPress={handleErrorDisplay} type="number" onBlur={handleSubmitChange} value={form.budgeted} name="budgeted" onChange={handleChange}/></TableCell>
-              <TableCell align="left"><Input onKeyPress={handleErrorDisplay} type="number" onBlur={handleSubmitChange} value={form.actual} name="actual" onChange={handleChange}/></TableCell>
+              <TableCell align="left"><Input onKeyDown={handleErrorDisplay} type="number" onBlur={handleSubmitChange} value={form.budgeted} name="budgeted" onChange={handleChange}/></TableCell>
+              <TableCell align="left"><Input onKeyDown={handleErrorDisplay} type="number" onBlur={handleSubmitChange} value={form.actual} name="actual" onChange={handleChange}/></TableCell>
               <Button style={{display:showDelete}}onClick={handleDelete} variant={'contained'} size="small">Delete</Button>
         </TableRow>
         </>
