@@ -33,7 +33,7 @@ const Home = () => {
                 src={financial} alt="people putting money ina piggy bank"
                 height="50%"
                 width="50%"
-                align="right"
+                align="center"
                 />
             </Box>
         </ThemeProvider>
