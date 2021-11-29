@@ -62,8 +62,8 @@ const Budget = () => {
               <TableHead>
                 <TableRow >
                   <TableCell variant="header">Title</TableCell>
-                  <TableCell variant="header"sx={{}} align="left">Actual Income</TableCell>
                   <TableCell variant="header"align="left">Expected Income</TableCell>
+                  <TableCell variant="header"sx={{}} align="left">Actual Income</TableCell>
                   <TableCell variant="header"sx={{}} align="left">Actions</TableCell>
                 </TableRow>
               </TableHead>
